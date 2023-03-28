@@ -113,13 +113,13 @@ module.exports = configure(function (/* ctx */) {
       // https: true
       open: true,       // opens browser window automatically
 
-      allowedHosts: ['new.kolodiva.com'],
-      before (app) {
-        const cors = require('cors')
-
-        app.options('*',cors())
-        app.use(cors())
-  },
+  //     allowedHosts: ['new.kolodiva.com'],
+  //     before (app) {
+  //       const cors = require('cors')
+  //
+  //       app.options('*',cors())
+  //       app.use(cors())
+  // },
 
   headers: {
     // 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
