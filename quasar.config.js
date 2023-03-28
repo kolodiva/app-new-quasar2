@@ -125,7 +125,7 @@ module.exports = configure(function (/* ctx */) {
   headers: {
     // 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
     // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Origin': '*',
+    //'Access-Control-Allow-Origin': '*',
 },
 
     },
@@ -175,7 +175,7 @@ module.exports = configure(function (/* ctx */) {
       // extendSSRWebserverConf (esbuildConf) {},
       // extendPackageJson (json) {},
 
-      pwa: true,
+      pwa: false,
 
       // manualStoreHydration: true,
       // manualPostHydrationTrigger: true,
