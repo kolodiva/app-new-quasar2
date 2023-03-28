@@ -175,7 +175,7 @@ import { useQuasar, QSpinnerFacebook } from 'quasar'
       const slideVibration = ref(63)
 
       function loadData () {
-        api.get('test?id=2356')
+        api.get('/test?id=2356')
           .then((response) => {
             guid.value = response.data.guid
           })
