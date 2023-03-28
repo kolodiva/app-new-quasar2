@@ -179,11 +179,11 @@ import { useQuasar, QSpinnerFacebook } from 'quasar'
             .then((response) => {
               guid.value = response.data.guid
             })
-            .catch(() => {
+            .catch((e) => {
               $q.notify({
                 color: 'negative',
                 position: 'top',
-                message: 'Loading failed',
+                message: `'Loading failed: '${e}`,
                 icon: 'report_problem'
               })
             })
