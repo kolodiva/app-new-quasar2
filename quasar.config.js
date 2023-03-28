@@ -102,13 +102,13 @@ module.exports = configure(function (/* ctx */) {
       //       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       //       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
       //     },
-      proxy: {
-    '/api': {
-      target: 'https://kolodiva.com',
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api/, '')
-        }
-      },
+    //   proxy: {
+    // '/api': {
+    //   target: 'https://kolodiva.com',
+    //   changeOrigin: true,
+    //   rewrite: (path) => path.replace(/^\/api/, '')
+    //     }
+    //   },
 
       // proxy: 'http://localhost:3000',
       // https: true
