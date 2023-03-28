@@ -96,8 +96,23 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
+
+      headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+          },      
+  //     proxy: {
+  //   '/api': {
+  //     target: 'http://localhost:3000',
+  //     changeOrigin: true,
+  //     rewrite: (path) => path.replace(/^\/api/, '')
+  //   }
+  // },
+
       // https: true
       open: true // opens browser window automatically
+
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
