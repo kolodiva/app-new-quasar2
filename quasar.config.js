@@ -102,13 +102,13 @@ module.exports = configure(function (/* ctx */) {
       //       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       //       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
       //     },
-      proxy: {
-    '/api': {
-      target: 'http://127.0.0.1:3000',
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api/, '')
-    }
-  },
+    //   proxy: {
+    // '/api': {
+    //   target: 'http://127.0.0.1:3000',
+    //   changeOrigin: true,
+    //   rewrite: (path) => path.replace(/^\/api/, '')
+    //     }
+    //   },
 
       // https: true
       open: true // opens browser window automatically
