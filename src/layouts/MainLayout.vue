@@ -175,7 +175,7 @@ import { useQuasar, QSpinnerFacebook } from 'quasar'
       const slideVibration = ref(63)
 
       function loadData () {
-        axios.get('https://kolodiva.com/test?id=2356')
+        axios.get('http://kolodiva.com/test?id=2356')
           .then((response) => {
             guid.value = response.data.guid
           })
