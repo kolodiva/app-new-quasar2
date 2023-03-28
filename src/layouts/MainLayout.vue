@@ -140,7 +140,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { api} from 'boot/axios'
+import { axios} from 'boot/axios'
 
 import { useQuasar, QSpinnerFacebook } from 'quasar'
 
@@ -175,7 +175,7 @@ import { useQuasar, QSpinnerFacebook } from 'quasar'
       const slideVibration = ref(63)
 
       function loadData () {
-        api.get('/test?id=2356')
+        axios.get('api/test?id=2356')
           .then((response) => {
             guid.value = response.data.guid
           })
