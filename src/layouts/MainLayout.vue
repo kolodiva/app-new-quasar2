@@ -1,15 +1,15 @@
 <template>
   <q-layout view="hHh lpR fFf">
 
-      <q-header elevated class="bg-primary text-white" height-hint="98">
+      <q-header elevated class="bg-blue-10 text-white" height-hint="98">
         <q-toolbar>
           <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
           <q-toolbar-title>
             <q-avatar>
-              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+              <img src="avatar_anonim.png" style="filter: invert(100%)">
             </q-avatar>
-            Title
+            <span class="text-body1 q-pl-md" > НачнЁмс помолясь...</span>
           </q-toolbar-title>
 
           <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -38,13 +38,13 @@
 
       </q-page-container>
 
-      <q-footer elevated class="bg-grey-8 text-white">
+      <q-footer elevated class="bg-blue-10 text-white q-py-md">
         <q-toolbar>
           <q-toolbar-title>
             <q-avatar>
-              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+              <img src="avatar_anonim.png" style="filter: invert(100%)">
             </q-avatar>
-            <div>Title</div>
+            <div class="text-body1">Vittorio 2023</div>
           </q-toolbar-title>
         </q-toolbar>
       </q-footer>
