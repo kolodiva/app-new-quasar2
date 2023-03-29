@@ -53,10 +53,10 @@
               <div class="text-h6">Товары</div>
 
 
-              <div v-for="n in 50" :key="n" class="q-mb-sm" >
-              <q-list bordered separator class="text-body1">
+              <div v-for="n in 50" :key="n" class="q-mb-xs" >
+              <q-list bordered separator class="text-subtitle1">
 
-                <q-slide-item @left="onLeft" @right="onRight" >
+                <q-slide-item @left="onLeft" @right="onRight">
                         <template v-slot:left>
                           <div class="row items-center">
                             <q-icon left name="done" /> Left
@@ -68,13 +68,13 @@
                           </div>
                         </template>
 
-                        <q-item class="">
+                        <q-item class="" >
                           <q-item-section avatar>
                             <q-avatar>
                               <img :src='img_count()' draggable="false">
                             </q-avatar>
                           </q-item-section>
-                          <q-item-section>Добавить товар в Корзину {{n}}</q-item-section>
+                          <q-item-section>В Корзину {{n}}</q-item-section>
                         </q-item>
                       </q-slide-item>
 
