@@ -38,15 +38,24 @@
 
       </q-page-container>
 
+
       <q-footer elevated class="bg-blue-10 text-white q-py-md">
-        <q-toolbar>
-          <q-toolbar-title>
-            <q-avatar>
-              <img src="avatar_anonim.png" style="filter: invert(100%)">
-            </q-avatar>
-            <div class="text-body1">Vittorio 2023</div>
-          </q-toolbar-title>
-        </q-toolbar>
+
+        <q-item clickable v-ripple>
+              <q-item-section side>
+                <q-avatar rounded size="48px">
+                  <img src="avatar_anonim.png" style="filter: invert(100%)">
+                  <q-badge floating color="teal" >new</q-badge>
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>Mary</q-item-label>
+                <q-item-label caption class="text-white">2 new messages</q-item-label>
+              </q-item-section>
+              <q-item-section side>
+                <div class="text-body1 text-white">Vittorio 2023</div>
+              </q-item-section>
+            </q-item>
       </q-footer>
 
     </q-layout>
