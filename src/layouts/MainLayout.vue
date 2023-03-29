@@ -6,7 +6,7 @@
           <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
           <q-toolbar-title>
-            <strong>Овощной</strong> ларЁк
+            <strong>Овощной</strong> ларЁк 2023
           </q-toolbar-title>
 
           <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
@@ -50,21 +50,27 @@
         <q-page padding style="padding-top: 36px">
           <q-tab-panels v-model="tab" animated>
             <q-tab-panel name="mails">
-              <div class="text-h6">Mails</div>
+              <div class="text-h6">Товары</div>
               <p v-for="n in 15" :key="n">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
               </p>
             </q-tab-panel>
 
             <q-tab-panel name="alarms">
-              <div class="text-h6">Alarms</div>
+              <div class="text-h6">Корзина</div>
               <p v-for="n in 15" :key="n">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
               </p>
             </q-tab-panel>
 
             <q-tab-panel name="movies">
-              <div class="text-h6">Movies</div>
+              <div class="text-h6">Заказы</div>
+              <p v-for="n in 15" :key="n">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+              </p>
+            </q-tab-panel>
+            <q-tab-panel name="contacts">
+              <div class="text-h6">Контакты</div>
               <p v-for="n in 15" :key="n">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
               </p>
@@ -75,13 +81,14 @@
           <q-page-sticky expand position="top">
 
 
-            <q-card style="width: 100vw;">
+            <q-card style="width: 100vw">
               <q-tabs
                 v-model="tab"
                 dense
                 :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
                 align="justify"
                 narrow-indicator
+                style="height: 40px;"
               >
                 <q-tab name="mails" label="Товары" />
                 <q-tab name="alarms" label="Корзина" />
