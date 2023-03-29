@@ -30,7 +30,7 @@
         <!-- drawer content -->
       </q-drawer>
 
-      <q-page-container>
+      <q-page-container class="q-pa-sm">
         <router-view>
           <span>{{guid}}</span>
       </router-view>
