@@ -138,27 +138,70 @@
   </div>
 </template>
 
+
+<script>
+
+export default {
+
+  preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+
+    // const $q = useQuasar();
+
+    const myStore = useMyStore(store);
+
+    // fetch data, validate route and optionally redirect to some other route...
+
+    // ssrContext is available only server-side in SSR mode
+
+    // No access to "this" here
+
+    // Return a Promise if you are running an async job
+    // Example:
+    //return store.dispatch('fetchItem', currentRoute.params.id)
+
+            // $q.loading.show({
+            //   spinner: QSpinnerFacebook,
+            //   spinnerColor: 'yellow',
+            //   spinnerSize: 40,
+            //   backgroundColor: 'purple',
+            //   message: 'Some important process is in progress. Hang on...',
+            //   messageColor: 'black'
+            // });
+
+    axios.get('https://kolodiva.com/test?id=2356')
+      .then((response) => {
+        //guid.value = response.data.guid
+        myStore.increment(response.data.guid);
+
+        //console.log(myStore.guid)
+      })
+      .catch((e) => {
+
+        console.log(e);
+      })
+
+      // setTimeout(() => {
+      //   $q.loading.hide()
+      // }, 1000)
+
+}
+}
+</script>
+
 <script setup>
 import { ref } from 'vue'
 import { axios} from 'boot/axios'
+import { useMyStore } from 'stores/myStore'
+import { computed } from 'vue';
 
 import { useQuasar, QSpinnerFacebook } from 'quasar'
 
   const $q = useQuasar();
 
-  // $q.notify({
-  //         color: 'positive',
-  //         position: 'bottom',
-  //         message: 'Loading zaebic',
-  //         icon: 'check_circle'
-  //       });
-
-//const guid1 = await api.get('/test')
-
-    //console.log(data);
+      const store = useMyStore();
 
       //return {
-      const guid = ref('guid1')
+      const guid = computed(() => store.guid);
       const carousel = ref(false)
       const card = ref(false)
       const sliders = ref(false)
@@ -174,49 +217,4 @@ import { useQuasar, QSpinnerFacebook } from 'quasar'
       const slideAlarm = ref(56)
       const slideVibration = ref(63)
 
-      function loadData () {
-        axios.get('https://kolodiva.com/test?id=2356')
-          .then((response) => {
-            guid.value = response.data.guid
-          })
-          .catch((e) => {
-            $q.notify({
-              color: 'negative',
-              position: 'top',
-              message: `'Loading failed: '${e}`,
-              icon: 'report_problem'
-            })
-          })
-
-          // api.get('/test?id=1804')
-          //   .then((response) => {
-          //     guid.value = response.data.guid
-          //   })
-          //   .catch((e) => {
-          //     $q.notify({
-          //       color: 'negative',
-          //       position: 'top',
-          //       message: `'Loading failed: '${e}`,
-          //       icon: 'report_problem'
-          //     })
-          //   })
-        }
-
-                $q.loading.show({
-                  spinner: QSpinnerFacebook,
-                  spinnerColor: 'yellow',
-                  spinnerSize: 40,
-                  backgroundColor: 'purple',
-                  message: 'Some important process is in progress. Hang on...',
-                  messageColor: 'black'
-                });
-
-        loadData();
-
-        setTimeout(() => {
-          $q.loading.hide()
-        }, 1000)
-    //}
-  //}
-//}
 </script>

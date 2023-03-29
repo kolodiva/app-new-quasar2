@@ -13,3 +13,18 @@ export const useCounterStore = defineStore('counter', {
     },
   },
 });
+
+
+export const useMyStore = defineStore('guid', {
+  state: () => ({
+    guid: '',
+  }),
+  getters: {
+    doubleCount: (state) => state.guid + ' - ' + state.guid,
+  },
+  actions: {
+    increment(guid) {
+      this.guid = guid;
+    },
+  },
+});
