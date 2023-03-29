@@ -13,18 +13,6 @@
         </q-toolbar>
       </q-header>
 
-      <q-footer reveal elevated class="">
-              <q-toolbar>
-                <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
-
-                <q-toolbar-title>
-                  <strong>Quasar</strong> Framework
-                </q-toolbar-title>
-
-                <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
-              </q-toolbar>
-            </q-footer>
-
       <q-drawer
         v-model="drawerLeft"
         :width="150"
@@ -75,6 +63,13 @@
               </q-toolbar-title>
             </q-toolbar>
           </q-page-sticky>
+
+          <!-- place QPageScroller at end of page -->
+                    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+                      <q-btn fab icon="keyboard_arrow_up" color="accent" />
+                    </q-page-scroller>
+
+
         </q-page>
       </q-page-container>
     </q-layout>
