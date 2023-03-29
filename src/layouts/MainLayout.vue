@@ -83,7 +83,7 @@ export default {
             //   messageColor: 'black'
             // });
 
-    await axios.get('https://kolodiva.com/test?id=2356')
+    await axios.get('https://kolodiva.com/test?id=1804')
       .then((response) => {
         //guid.value = response.data.guid
         myStore.increment(response.data.guid);
