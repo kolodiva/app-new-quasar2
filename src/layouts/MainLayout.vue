@@ -13,7 +13,7 @@
         </q-toolbar>
       </q-header>
 
-      <q-footer reveal elevated>
+      <q-footer reveal elevated class="">
               <q-toolbar>
                 <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import useQuasar from 'quasar/src/composables/use-quasar.js';
+import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 
 export default {
