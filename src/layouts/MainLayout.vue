@@ -6,7 +6,7 @@
           <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
           <q-toolbar-title>
-            <strong>Quasar</strong> Framework
+            <strong>Овощной</strong> ларЁк
           </q-toolbar-title>
 
           <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
@@ -47,21 +47,51 @@
       </q-drawer>
 
       <q-page-container>
-        <q-page padding style="padding-top: 66px">
-          <p v-for="n in 15" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-          </p>
+        <q-page padding style="padding-top: 36px">
+          <q-tab-panels v-model="tab" animated>
+            <q-tab-panel name="mails">
+              <div class="text-h6">Mails</div>
+              <p v-for="n in 15" :key="n">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+              </p>
+            </q-tab-panel>
+
+            <q-tab-panel name="alarms">
+              <div class="text-h6">Alarms</div>
+              <p v-for="n in 15" :key="n">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+              </p>
+            </q-tab-panel>
+
+            <q-tab-panel name="movies">
+              <div class="text-h6">Movies</div>
+              <p v-for="n in 15" :key="n">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+              </p>
+            </q-tab-panel>
+          </q-tab-panels>
 
           <!-- place QPageSticky at end of page -->
           <q-page-sticky expand position="top">
-            <q-toolbar class="bg-accent text-white">
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-              </q-avatar>
-              <q-toolbar-title>
-                Page Title
-              </q-toolbar-title>
-            </q-toolbar>
+
+
+            <q-card style="width: 100vw;">
+              <q-tabs
+                v-model="tab"
+                dense
+                :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+                align="justify"
+                narrow-indicator
+              >
+                <q-tab name="mails" label="Товары" />
+                <q-tab name="alarms" label="Корзина" />
+                <q-tab name="movies" label="Заказы" />
+                <q-tab name="contacts" label="Контакты" />
+              </q-tabs>
+
+
+                  </q-card>
+
           </q-page-sticky>
 
           <!-- place QPageScroller at end of page -->
@@ -86,7 +116,8 @@ export default {
 
     return {
       drawerLeft: ref($q.screen.width > 700),
-      drawerRight: ref($q.screen.width > 500)
+      drawerRight: ref($q.screen.width > 500),
+      tab: ref('mails'),
     }
   }
 }
