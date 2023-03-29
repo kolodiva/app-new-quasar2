@@ -168,7 +168,7 @@ export default {
             //   messageColor: 'black'
             // });
 
-    axios.get('https://kolodiva.com/test?id=2356')
+    api.get('test?id=2356')
       .then((response) => {
         //guid.value = response.data.guid
         myStore.increment(response.data.guid);
@@ -190,7 +190,7 @@ export default {
 
 <script setup>
 import { ref } from 'vue'
-import { axios} from 'boot/axios'
+import { api} from 'boot/axios'
 import { useMyStore } from 'stores/myStore'
 import { computed } from 'vue';
 
