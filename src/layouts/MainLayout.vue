@@ -39,7 +39,7 @@
       </q-page-container>
 
 
-      <q-footer elevated class="bg-blue-10 text-white q-py-md">
+      <q-footer elevated class="bg-blue-10 text-white q-py-xs">
 
         <q-item clickable v-ripple>
               <q-item-section side>
