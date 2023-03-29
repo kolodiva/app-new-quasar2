@@ -7,7 +7,7 @@
 
 export default {
 
-  preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
     // const $q = useQuasar();
 
@@ -32,7 +32,9 @@ export default {
             //   messageColor: 'black'
             // });
 
-    axios.get('https://kolodiva.com/test?id=2356')
+            console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
+    await axios.get('https://kolodiva.com/test?id=2356')
       .then((response) => {
         //guid.value = response.data.guid
         myStore.increment(response.data.guid);
