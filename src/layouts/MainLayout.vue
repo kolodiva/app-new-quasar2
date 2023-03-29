@@ -51,9 +51,35 @@
           <q-tab-panels v-model="tab" animated>
             <q-tab-panel name="mails">
               <div class="text-h6">Товары</div>
-              <p v-for="n in 15" :key="n">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-              </p>
+
+
+              <q-list bordered separator>
+
+                <q-slide-item @left="onLeft" @right="onRight">
+                        <template v-slot:left>
+                          <div class="row items-center">
+                            <q-icon left name="done" /> Left
+                          </div>
+                        </template>
+                        <template v-slot:right>
+                          <div class="row items-center">
+                            Выбрать количество... <q-icon right name="alarm" />
+                          </div>
+                        </template>
+
+                        <q-item>
+                          <q-item-section avatar>
+                            <q-avatar>
+                              <img src="https://cdn.quasar.dev/img/avatar6.jpg" draggable="false">
+                            </q-avatar>
+                          </q-item-section>
+                          <q-item-section>Добавить товар в Корзину</q-item-section>
+                        </q-item>
+                      </q-slide-item>
+                    </q-list>
+
+
+
             </q-tab-panel>
 
             <q-tab-panel name="alarms">
@@ -116,15 +142,37 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
+import { onBeforeUnmount } from 'vue'
+
 
 export default {
   setup () {
     const $q = useQuasar()
+    let timer
+
+        function finalize (reset) {
+          timer = setTimeout(() => {
+            reset()
+          }, 1000)
+        }
+
+        onBeforeUnmount(() => {
+          clearTimeout(timer)
+        })
 
     return {
       drawerLeft: ref($q.screen.width > 700),
       drawerRight: ref($q.screen.width > 500),
       tab: ref('mails'),
+      onLeft ({ reset }) {
+              $q.notify('Left action triggered. Resetting in 1 second.')
+              finalize(reset)
+            },
+
+            onRight ({ reset }) {
+              $q.notify('Right action triggered. Resetting in 1 second.')
+              finalize(reset)
+            },
     }
   }
 }
