@@ -54,7 +54,7 @@
 
 
               <div v-for="n in 50" :key="n" class="q-mb-sm" >
-              <q-list bordered separator>
+              <q-list bordered separator class="text-body1">
 
                 <q-slide-item @left="onLeft" @right="onRight" >
                         <template v-slot:left>
