@@ -1,155 +1,98 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-
-      <q-header elevated class="bg-blue-10 text-white" height-hint="98">
+  <div class="q-pa-md">
+    <q-layout view="lHh Lpr lFf" container style="height: 100vh" class="shadow-2 rounded-borders">
+      <q-header reveal elevated>
         <q-toolbar>
-          <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+          <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
           <q-toolbar-title>
-            <q-avatar class="q-pt-xs">
-              <img src="avatar_anonim.png" style="filter: invert(100%)">
-            </q-avatar>
-            <span class="text-body1 q-pl-sm" > НачнЁмс помолясь...</span>
+            <strong>Quasar</strong> Framework
           </q-toolbar-title>
 
-          <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+          <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
         </q-toolbar>
-
-        <q-tabs align="left">
-          <q-route-tab to="/page1" label="Page One" />
-          <q-route-tab to="/page2" label="Page Two" />
-          <q-route-tab to="/page3" label="Page Three" />
-        </q-tabs>
       </q-header>
 
-      <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-        <!-- drawer content -->
+      <q-footer reveal elevated>
+              <q-toolbar>
+                <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
+
+                <q-toolbar-title>
+                  <strong>Quasar</strong> Framework
+                </q-toolbar-title>
+
+                <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
+              </q-toolbar>
+            </q-footer>
+
+      <q-drawer
+        v-model="drawerLeft"
+        :width="150"
+        :breakpoint="700"
+        behavior="mobile"
+        overlay
+        bordered
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+      >
+        <q-scroll-area class="fit">
+          <div class="q-pa-sm">
+            <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+          </div>
+        </q-scroll-area>
       </q-drawer>
 
-      <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-        <!-- drawer content -->
+      <q-drawer
+        side="right"
+        v-model="drawerRight"
+        bordered
+        :width="150"
+        :breakpoint="500"
+        behavior="mobile"
+        overlay
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+      >
+        <q-scroll-area class="fit">
+          <div class="q-pa-sm">
+            <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+          </div>
+        </q-scroll-area>
       </q-drawer>
 
-      <q-page-container class="q-pa-sm">
-        <router-view>
-          <span>{{guid}}</span>
-      </router-view>
+      <q-page-container>
+        <q-page padding style="padding-top: 66px">
+          <p v-for="n in 15" :key="n">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+          </p>
 
-
+          <!-- place QPageSticky at end of page -->
+          <q-page-sticky expand position="top">
+            <q-toolbar class="bg-accent text-white">
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+              </q-avatar>
+              <q-toolbar-title>
+                Page Title
+              </q-toolbar-title>
+            </q-toolbar>
+          </q-page-sticky>
+        </q-page>
       </q-page-container>
-
-
-      <q-footer elevated class="bg-blue-10 text-white q-py-xs">
-
-        <q-item clickable v-ripple>
-              <q-item-section side>
-                <q-avatar rounded size="48px">
-                  <img src="avatar_anonim.png" style="filter: invert(100%)">
-                  <q-badge floating color="teal" >new</q-badge>
-                </q-avatar>
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Mary</q-item-label>
-                <q-item-label caption class="text-white">2 new messages</q-item-label>
-              </q-item-section>
-              <q-item-section side>
-                <div class="text-body1 text-white">Vittorio 2023</div>
-              </q-item-section>
-            </q-item>
-      </q-footer>
-
     </q-layout>
-
+  </div>
 </template>
 
-
 <script>
+import useQuasar from 'quasar/src/composables/use-quasar.js';
+import { ref } from 'vue'
 
 export default {
+  setup () {
+    const $q = useQuasar()
 
-  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
-
-    // const $q = useQuasar();
-
-    const myStore = useMyStore(store);
-
-    // fetch data, validate route and optionally redirect to some other route...
-
-    // ssrContext is available only server-side in SSR mode
-
-    // No access to "this" here
-
-    // Return a Promise if you are running an async job
-    // Example:
-    //return store.dispatch('fetchItem', currentRoute.params.id)
-
-            // $q.loading.show({
-            //   spinner: QSpinnerFacebook,
-            //   spinnerColor: 'yellow',
-            //   spinnerSize: 40,
-            //   backgroundColor: 'purple',
-            //   message: 'Some important process is in progress. Hang on...',
-            //   messageColor: 'black'
-            // });
-
-    await axios.get('https://kolodiva.com/test?id=1804')
-      .then((response) => {
-        //guid.value = response.data.guid
-        myStore.increment(response.data.guid);
-
-        //console.log(myStore.guid)
-      })
-      .catch((e) => {
-
-        console.log(e);
-      })
-
-      // setTimeout(() => {
-      //   $q.loading.hide()
-      // }, 1000)
-
+    return {
+      drawerLeft: ref($q.screen.width > 700),
+      drawerRight: ref($q.screen.width > 500)
+    }
+  }
 }
-}
-</script>
-
-<script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { useMyStore } from 'stores/myStore'
-import { computed } from 'vue';
-
-import { useQuasar, QSpinnerFacebook } from 'quasar'
-
-const leftDrawerOpen = ref(false)
-    const rightDrawerOpen = ref(false)
-
-    const toggleLeftDrawer = () => {
-            leftDrawerOpen.value = !leftDrawerOpen.value
-          }
-
-          const toggleRightDrawer = () => {
-            rightDrawerOpen.value = !rightDrawerOpen.value
-          }
-
-  const $q = useQuasar();
-
-      const store = useMyStore();
-
-      //return {
-      const guid = computed(() => store.guid);
-      const carousel = ref(false)
-      const card = ref(false)
-      const sliders = ref(false)
-
-      const autoplay = ref(true)
-
-      const slide = ref(1)
-      const lorem = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, ratione eum minus fuga, quasi dicta facilis corporis magnam, suscipit at quo nostrum!'
-
-      const stars = ref(3)
-
-      const slideVol = ref(39)
-      const slideAlarm = ref(56)
-      const slideVibration = ref(63)
-
 </script>
