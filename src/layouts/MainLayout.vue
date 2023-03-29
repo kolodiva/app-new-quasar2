@@ -1,144 +1,52 @@
 <template>
+  <q-layout view="hHh lpR fFf">
 
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Carousel" color="primary" @click="carousel = true" />
-    <q-btn label="Card" color="primary" @click="card = true" />
-    <q-btn label="Sliders" color="primary" @click="sliders = true" />
+      <q-header elevated class="bg-primary text-white" height-hint="98">
+        <q-toolbar>
+          <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-    <q-dialog v-model="carousel">
-      <q-carousel
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        swipeable
-        animated
-        :autoplay="autoplay"
-        infinite
-        v-model="slide"
-        control-color="primary"
-        navigation-icon="flutter_dash"
-        navigation
-        padding
-        height="600px"
-        class="bg-white shadow-1 rounded-borders"
-        arrows
-        @mouseenter="autoplay = false"
-        @mouseleave="autoplay = true"
-        style="overflow-x: hidden"
+          <q-toolbar-title>
+            <q-avatar>
+              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+            </q-avatar>
+            Title
+          </q-toolbar-title>
 
-      >
-        <q-carousel-slide :name="1" class="column no-wrap flex-center">
-          <q-icon name="style" color="primary" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="2" class="column no-wrap flex-center">
-          <q-icon name="live_tv" color="primary" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="3" class="column no-wrap flex-center">
-          <q-icon name="layers" color="primary" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide :name="4" class="column no-wrap flex-center">
-          <q-icon name="terrain" color="primary" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-      </q-carousel>
-    </q-dialog>
+          <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+        </q-toolbar>
 
-    <q-dialog v-model="card">
-      <q-card class="my-card">
-        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+        <q-tabs align="left">
+          <q-route-tab to="/page1" label="Page One" />
+          <q-route-tab to="/page2" label="Page Two" />
+          <q-route-tab to="/page3" label="Page Three" />
+        </q-tabs>
+      </q-header>
 
-        <q-card-section>
-          <q-btn
-            fab
-            color="primary"
-            icon="place"
-            class="absolute"
-            style="top: 0; right: 12px; transform: translateY(-50%);"
-          />
+      <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+        <!-- drawer content -->
+      </q-drawer>
 
-          <div class="row no-wrap items-center">
-            <div class="col text-h6 ellipsis">
-              Cafe Basilico
-            </div>
-            <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
-              <q-icon name="place" />
-              250 ft
-            </div>
-          </div>
+      <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+        <!-- drawer content -->
+      </q-drawer>
 
-          <q-rating v-model="stars" :max="5" size="32px" />
-        </q-card-section>
+      <q-page-container>
+        <router-view />
+      </q-page-container>
 
-        <q-card-section class="q-pt-none">
-          <div class="text-subtitle1">
-            $・Italian, Cafe
-          </div>
-          <div class="text-caption text-grey">
-            Small plates, salads & sandwiches in an intimate setting.
-          </div>
-        </q-card-section>
+      <q-footer elevated class="bg-grey-8 text-white">
+        <q-toolbar>
+          <q-toolbar-title>
+            <q-avatar>
+              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+            </q-avatar>
+            <div>Title</div>
+          </q-toolbar-title>
+        </q-toolbar>
+      </q-footer>
 
-        <q-separator />
+    </q-layout>
 
-        <q-card-actions align="right">
-          <q-btn v-close-popup flat color="primary" label="Reserve" />
-          <q-btn v-close-popup flat color="primary" round icon="event" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-
-    <q-dialog v-model="sliders">
-      <q-card style="width: 300px" class="q-px-sm q-pb-md">
-        <q-card-section>
-          <div class="text-h6">Volumes</div>
-        </q-card-section>
-
-        <q-item-label header>Media volume</q-item-label>
-        <q-item dense>
-          <q-item-section avatar>
-            <q-icon name="volume_up" />
-          </q-item-section>
-          <q-item-section>
-            <q-slider color="teal" v-model="slideVol" :step="0" />
-          </q-item-section>
-        </q-item>
-
-        <q-item-label header>Alarm volume</q-item-label>
-        <q-item dense>
-          <q-item-section avatar>
-            <q-icon name="alarm" />
-          </q-item-section>
-          <q-item-section>
-            <q-slider color="teal" v-model="slideAlarm" :step="0" />
-          </q-item-section>
-        </q-item>
-
-        <q-item-label header>Ring volume</q-item-label>
-        <q-item dense>
-          <q-item-section avatar>
-            <q-icon name="vibration" />
-          </q-item-section>
-          <q-item-section>
-            <q-slider color="teal" v-model="slideVibration" :step="0" />
-          </q-item-section>
-        </q-item>
-      </q-card>
-    </q-dialog>
-
-
-    <div>{{guid}}</div>
-
-    </div>
 </template>
 
 
@@ -198,6 +106,17 @@ import { useMyStore } from 'stores/myStore'
 import { computed } from 'vue';
 
 import { useQuasar, QSpinnerFacebook } from 'quasar'
+
+const leftDrawerOpen = ref(false)
+    const rightDrawerOpen = ref(false)
+
+    const toggleLeftDrawer = () => {
+            leftDrawerOpen.value = !leftDrawerOpen.value
+          }
+
+          const toggleRightDrawer = () => {
+            rightDrawerOpen.value = !rightDrawerOpen.value
+          }
 
   const $q = useQuasar();
 
