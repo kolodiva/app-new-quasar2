@@ -86,7 +86,7 @@
                 v-model="tab"
                 dense
                 :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-                align="justify"
+                align="center"
                 narrow-indicator
                 style="height: 40px;"
               >
