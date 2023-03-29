@@ -168,7 +168,7 @@ export default {
             //   messageColor: 'black'
             // });
 
-    api.get('test?id=2356')
+    api.get('/test?id=2356')
       .then((response) => {
         //guid.value = response.data.guid
         myStore.increment(response.data.guid);
