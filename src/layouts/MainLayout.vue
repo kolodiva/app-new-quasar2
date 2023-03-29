@@ -31,7 +31,11 @@
       </q-drawer>
 
       <q-page-container>
-        <router-view />
+        <router-view>
+          <span>{{guid}}</span>
+      </router-view>
+
+
       </q-page-container>
 
       <q-footer elevated class="bg-grey-8 text-white">
