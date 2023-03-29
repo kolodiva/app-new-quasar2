@@ -53,9 +53,10 @@
               <div class="text-h6">Товары</div>
 
 
+              <div v-for="n in 50" :key="n" class="q-mb-sm" >
               <q-list bordered separator>
 
-                <q-slide-item @left="onLeft" @right="onRight">
+                <q-slide-item @left="onLeft" @right="onRight" >
                         <template v-slot:left>
                           <div class="row items-center">
                             <q-icon left name="done" /> Left
@@ -67,16 +68,19 @@
                           </div>
                         </template>
 
-                        <q-item>
+                        <q-item class="">
                           <q-item-section avatar>
                             <q-avatar>
-                              <img src="https://cdn.quasar.dev/img/avatar6.jpg" draggable="false">
+                              <img :src='img_count()' draggable="false">
                             </q-avatar>
                           </q-item-section>
-                          <q-item-section>Добавить товар в Корзину</q-item-section>
+                          <q-item-section>Добавить товар в Корзину {{n}}</q-item-section>
                         </q-item>
                       </q-slide-item>
+
+
                     </q-list>
+                  </div>
 
 
 
@@ -172,6 +176,10 @@ export default {
             onRight ({ reset }) {
               $q.notify('Right action triggered. Resetting in 1 second.')
               finalize(reset)
+            },
+
+            img_count(){
+              return "https://picsum.photos/500/300?t=" + Math.floor(1000*Math.random())
             },
     }
   }
