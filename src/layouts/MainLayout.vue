@@ -6,10 +6,10 @@
           <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
           <q-toolbar-title>
-            <q-avatar>
+            <q-avatar class="q-pt-xs">
               <img src="avatar_anonim.png" style="filter: invert(100%)">
             </q-avatar>
-            <span class="text-body1 q-pl-md" > НачнЁмс помолясь...</span>
+            <span class="text-body1 q-pl-sm" > НачнЁмс помолясь...</span>
           </q-toolbar-title>
 
           <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
