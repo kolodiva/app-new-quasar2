@@ -46,25 +46,24 @@
       </q-drawer>
 
       <q-page-container>
-        <q-page padding style="padding-top: 36px">
+        <q-page padding style="padding-top: 45px">
           <router-view/>
           <!-- place QPageSticky at end of page -->
           <q-page-sticky expand position="top">
 
 
-            <q-card style="width: 100vw">
+            <q-card class="full-width text-h6">
               <q-tabs
                 v-model="tab"
                 dense
                 :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-                align="center"
                 narrow-indicator
-                style="height: 40px;"
+                style="height: 45px;"
               >
-                <q-route-tab to="/" exact name="goods" label="Товары" @click.prevent='navRedirect'/>
-                <q-route-tab to="/basket" exact name="basket" label="Корзина" />
-                <q-route-tab to="/orders" exact name="orders" label="Заказы" />
-                <q-route-tab to="/contacts" exact name="contacts" label="Контакты" />
+                <q-route-tab to="/" exact name="goods" label="" icon='home'/>
+                <q-route-tab to="/basket" exact name="basket" label="" icon='shopping_cart'/>
+                <q-route-tab to="/orders" exact name="orders" label="" icon='list_alt' />
+                <q-route-tab to="/contacts" exact name="contacts" label="" icon='contact_phone'/>
               </q-tabs>
 
 
