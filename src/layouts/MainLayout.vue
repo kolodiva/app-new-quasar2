@@ -61,10 +61,10 @@
                 narrow-indicator
                 style="height: 40px;"
               >
-                <q-route-tab to="/" exact replace name="goods" label="Товары" @click.prevent='navRedirect'/>
-                <q-route-tab to="/basket" exact replace name="basket" label="Корзина" />
-                <q-route-tab to="/orders" exact replace name="orders" label="Заказы" />
-                <q-route-tab to="/contacts" exact replace name="contacts" label="Контакты" />
+                <q-route-tab to="/" exact name="goods" label="Товары" @click.prevent='navRedirect'/>
+                <q-route-tab to="/basket" exact name="basket" label="Корзина" />
+                <q-route-tab to="/orders" exact name="orders" label="Заказы" />
+                <q-route-tab to="/contacts" exact name="contacts" label="Контакты" />
               </q-tabs>
 
 
