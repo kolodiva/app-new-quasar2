@@ -5,7 +5,7 @@
           <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
           <q-toolbar-title>
-            <strong>Овощной</strong> ларЁк 2023
+            <strong>Овощной</strong> ларЬ 2023
           </q-toolbar-title>
 
           <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
