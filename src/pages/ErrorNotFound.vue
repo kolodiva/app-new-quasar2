@@ -1,5 +1,6 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <q-page class="bg-blue text-white text-center q-pa-md flex flex-center">
+
     <div>
       <div style="font-size: 15vh">
         404
@@ -19,7 +20,7 @@
         no-caps
       />
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>
