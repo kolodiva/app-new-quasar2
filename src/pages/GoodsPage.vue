@@ -1,23 +1,37 @@
 <template>
 
-  <q-page  class="q-pa-md">
+  <q-page class="q-py-md">
       <div class="row justify-center q-gutter-sm">
-        <q-intersection
+
+        <!-- <q-responsive :ratio="1/8" class=""
+        v-for="n in store.getNomenklTopLevel"
+        :key='n.id'
+        style='min-width: 80px'
+        > -->
+
+          <q-card flat bordered class="col-xs-5 col-sm-4 col-md-3"
           v-for="n in store.getNomenklTopLevel"
           :key='n.id'
-          once
-          transition="scale"
-          class="example-item"
-        >
-          <q-card flat bordered class="q-ma-sm">
-            <img :src="`${n.url}`">
+          style='min-width: 160px'
+          >
+            <!-- <q-avatar square color="grey"  class="fit"><q-img :src="`${n.url}`" /></q-avatar> -->
+            <!-- <q-img class="col" :src="`${n.url}`" /> -->
 
-            <q-card-section>
-              <div class="text-h6">Card #{{ index }}</div>
-              <div class="text-subtitle2">by John Doe</div>
+
+            <q-skeleton height="180px" class="row" animation='none' square >
+              <q-img fit='fill' :src="`${n.url}`" style='max-width: 180px;' />
+            </q-skeleton>
+
+
+
+
+
+            <q-card-section style='overflow: auto'>
+              <div class="text-subtitle2 text-center"  >{{ n.name }}</div>
+              <!-- <div class="text-subtitle2">by John Doe</div> -->
             </q-card-section>
           </q-card>
-        </q-intersection>
+        <!-- </q-responsive> -->
       </div>
     </q-page>
 
@@ -69,7 +83,9 @@ export default {
 
   <style lang="scss" scoped>
   .example-item {
+    min-height: 250px;
     height: 250px;
+    max-height: 250px;
     width: 160px;
     }
   </style>

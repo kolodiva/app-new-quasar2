@@ -5,7 +5,7 @@
           <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
 
           <q-toolbar-title>
-            <strong>Овощной</strong> ларЬ 2023
+            <strong>Овощной</strong> ларЪ 2023
           </q-toolbar-title>
 
           <q-btn flat round dense icon="menu" @click="drawerRight = !drawerRight" />
@@ -71,7 +71,7 @@
 
           </q-page-sticky>
           <!-- place QPageScroller at end of page -->
-                    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]">
+                    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]" duration='1000'>
                       <q-btn fab icon="keyboard_arrow_up" color="accent" />
                     </q-page-scroller>
         </q-page>
