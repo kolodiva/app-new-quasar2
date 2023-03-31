@@ -1,7 +1,7 @@
 <template>
 
   <q-page class="q-py-md">
-      <div class="row justify-center q-gutter-sm">
+      <div class="row justify-center q-gutter-md">
 
         <!-- <q-responsive :ratio="1/8" class=""
         v-for="n in store.getNomenklTopLevel"
@@ -9,7 +9,7 @@
         style='min-width: 80px'
         > -->
 
-          <q-card flat bordered class="col-xs-5 col-sm-2 col-md-1"
+          <q-card class="col-xs-5 col-sm-2 col-md-1"
           v-for="n in store.getNomenklTopLevel"
           :key='n.id'
           style='min-width: 160px'
