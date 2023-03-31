@@ -9,7 +9,7 @@
         style='min-width: 80px'
         > -->
 
-          <q-card flat bordered class="col-xs-5 col-sm-4 col-md-3"
+          <q-card flat bordered class="col-xs-5 col-sm-2 col-md-1"
           v-for="n in store.getNomenklTopLevel"
           :key='n.id'
           style='min-width: 160px'
@@ -18,7 +18,7 @@
             <!-- <q-img class="col" :src="`${n.url}`" /> -->
 
 
-            <q-skeleton height="180px" class="row" animation='none' square >
+            <q-skeleton height="180px" class="row justify-center" animation='none' square >
               <q-img fit='fill' :src="`${n.url}`" style='max-width: 180px;' />
             </q-skeleton>
 
