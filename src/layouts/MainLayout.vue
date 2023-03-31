@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="lHh Lpr lFf" container style="height: 100vh" class="shadow-2 rounded-borders">
+    <q-layout view="lHh Lpr lFf">
       <q-header reveal elevated>
         <q-toolbar>
           <q-btn flat round dense icon="menu" @click="drawerLeft = !drawerLeft" />
@@ -46,7 +46,7 @@
       </q-drawer>
 
       <q-page-container>
-        <q-page padding style="padding-top: 45px">
+        <q-page padding style="padding-top: 45px" class="full-height">
           <router-view/>
           <!-- place QPageSticky at end of page -->
           <q-page-sticky expand position="top">

@@ -1,6 +1,6 @@
 <template>
 
-  <!-- <q-page  class="q-pa-md"> -->
+  <q-page  class="q-pa-md">
       <div class="row justify-center q-gutter-sm">
         <q-intersection
           v-for="n in store.getNomenklTopLevel"
@@ -19,7 +19,7 @@
           </q-card>
         </q-intersection>
       </div>
-    <!-- </q-page> -->
+    </q-page>
 
 </template>
 
