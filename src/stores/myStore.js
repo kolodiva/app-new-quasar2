@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import {topNomenkl} from 'assets/nomenkl-top-level.json'
+
 
 export const useCounterStore = defineStore('counter', {
   state: () => ({
@@ -26,5 +28,16 @@ export const useMyStore = defineStore('guid', {
     increment(guid) {
       this.guid = guid;
     },
+  },
+});
+
+export const useMyStoreNomenklator = defineStore('nomenklTopLevel', {
+  state: () => ({
+    nomenklTopLevel: topNomenkl,
+  }),
+  getters: {
+    getNomenklTopLevel: (state) => state.nomenklTopLevel,
+  },
+  actions: {
   },
 });

@@ -2,9 +2,7 @@
   <q-page>
         <div class="text-h6 q-mt-sm">Товары и тара</div>
 
-
-        <div v-for="n in 50" :key="n" class="q-mb-xs" >
-        <q-list bordered separator class="text-h6">
+        <q-list bordered separator v-for="n in store.getNomenklTopLevel" :key="n" class="text-h6">
 
           <q-slide-item @left="onLeft" @right="onRight">
                   <template v-slot:left>
@@ -21,16 +19,15 @@
                   <q-item class="" >
                     <q-item-section avatar>
                       <q-avatar>
-                        <img :src='img_count()' draggable="false">
+                        <img :src="`${n.url}`" draggable="false">
                       </q-avatar>
                     </q-item-section>
-                    <q-item-section>В Корзину {{n}}</q-item-section>
+                    <q-item-section>{{n.name}}</q-item-section>
                   </q-item>
                 </q-slide-item>
 
 
               </q-list>
-            </div>
 
 
     <!-- place QPageScroller at end of page -->
@@ -46,16 +43,22 @@
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 import { onBeforeUnmount } from 'vue'
+import { useMyStoreNomenklator } from 'stores/myStore'
+
+
+
 
 export default {
   setup () {
+    const store = useMyStoreNomenklator();
+
     const $q = useQuasar()
     let timer
 
         function finalize (reset) {
           timer = setTimeout(() => {
             reset()
-          }, 1000)
+          }, 500)
         }
 
         onBeforeUnmount(() => {
@@ -63,6 +66,7 @@ export default {
         })
 
     return {
+      store,
       onLeft ({ reset }) {
               $q.notify('Left action triggered. Resetting in 1 second.')
               finalize(reset)

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-blue text-white text-center q-pa-md flex flex-center">
+  <q-page class="bg-white text-blue text-center q-pa-md flex flex-center">
 
     <div>
       <div style="font-size: 15vh">
@@ -7,16 +7,16 @@
       </div>
 
       <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+        Oops.<br>А ннету ничего...
       </div>
 
       <q-btn
         class="q-mt-xl"
-        color="white"
-        text-color="blue"
+        color="blue"
+        text-color="white"
         unelevated
         to="/"
-        label="Go Home"
+        label="В Каталог"
         no-caps
       />
     </div>

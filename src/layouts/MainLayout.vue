@@ -60,7 +60,7 @@
                 narrow-indicator
                 style="height: 45px;"
               >
-                <q-route-tab to="/" exact name="goods" label="" icon='home'/>
+                <q-route-tab to="/" exact no-caps name="goods" label="" icon='home'/>
                 <q-route-tab to="/basket" exact name="basket" label="" icon='shopping_cart'/>
                 <q-route-tab to="/orders" exact name="orders" label="" icon='list_alt' />
                 <q-route-tab to="/contacts" exact name="contacts" label="" icon='contact_phone'/>
@@ -102,8 +102,8 @@ export default {
         }
 
     return {
-      drawerLeft: ref($q.screen.width > 700),
-      drawerRight: ref($q.screen.width > 500),
+      drawerLeft: ref($q.screen.width > 5700),
+      drawerRight: ref($q.screen.width > 5500),
       tab: ref('goods'),
       navRedirect
     }
