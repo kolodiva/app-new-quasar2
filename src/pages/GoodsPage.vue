@@ -1,42 +1,26 @@
 <template>
-  <q-page>
-        <div class="text-h6 q-mt-sm">Товары и тара</div>
 
-        <q-list bordered separator v-for="n in store.getNomenklTopLevel" :key="n" class="text-h6">
+  <!-- <q-page  class="q-pa-md"> -->
+      <div class="row justify-center q-gutter-sm">
+        <q-intersection
+          v-for="n in store.getNomenklTopLevel"
+          :key='n.id'
+          once
+          transition="scale"
+          class="example-item"
+        >
+          <q-card flat bordered class="q-ma-sm">
+            <img :src="`${n.url}`">
 
-          <q-slide-item @left="onLeft" @right="onRight">
-                  <template v-slot:left>
-                    <div class="row items-center">
-                      <q-icon left name="done" /> Left
-                    </div>
-                  </template>
-                  <template v-slot:right>
-                    <div class="row items-center">
-                      Кол-во... <q-icon right name="alarm" />
-                    </div>
-                  </template>
+            <q-card-section>
+              <div class="text-h6">Card #{{ index }}</div>
+              <div class="text-subtitle2">by John Doe</div>
+            </q-card-section>
+          </q-card>
+        </q-intersection>
+      </div>
+    <!-- </q-page> -->
 
-                  <q-item class="" >
-                    <q-item-section avatar>
-                      <q-avatar>
-                        <img :src="`${n.url}`" draggable="false">
-                      </q-avatar>
-                    </q-item-section>
-                    <q-item-section>{{n.name}}</q-item-section>
-                  </q-item>
-                </q-slide-item>
-
-
-              </q-list>
-
-
-    <!-- place QPageScroller at end of page -->
-              <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 38]">
-                <q-btn fab icon="keyboard_arrow_up" color="accent" />
-              </q-page-scroller>
-
-
-  </q-page>
 </template>
 
 <script>
@@ -44,8 +28,6 @@ import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 import { onBeforeUnmount } from 'vue'
 import { useMyStoreNomenklator } from 'stores/myStore'
-
-
 
 
 export default {
@@ -84,3 +66,10 @@ export default {
   }
 }
 </script>
+
+  <style lang="scss" scoped>
+  .example-item {
+    height: 250px;
+    width: 160px;
+    }
+  </style>

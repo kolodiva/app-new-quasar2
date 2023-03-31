@@ -23,7 +23,7 @@
       >
         <q-scroll-area class="fit">
           <div class="q-pa-sm">
-            <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+            <div v-for="n in 10" :key="n">Drawer {{ n }} / 10</div>
           </div>
         </q-scroll-area>
       </q-drawer>
@@ -40,7 +40,7 @@
       >
         <q-scroll-area class="fit">
           <div class="q-pa-sm">
-            <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+            <div v-for="n in 10" :key="n">Drawer {{ n }} / 10</div>
           </div>
         </q-scroll-area>
       </q-drawer>
@@ -70,7 +70,12 @@
                   </q-card>
 
           </q-page-sticky>
+          <!-- place QPageScroller at end of page -->
+                    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]">
+                      <q-btn fab icon="keyboard_arrow_up" color="accent" />
+                    </q-page-scroller>
         </q-page>
+
       </q-page-container>
     </q-layout>
 </template>
