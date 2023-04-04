@@ -1,57 +1,83 @@
 <template>
+  <q-page>
+        <div class="text-h6 q-mt-sm">Товары и тара</div>
 
-  <q-page class="q-py-md">
-      <div class="row justify-center q-gutter-md">
+        <q-list bordered separator v-for="n in store.getNomenklSimple" :key="n.guid" class="text-h6"
 
-        <!-- <q-responsive :ratio="1/8" class=""
-        v-for="n in store.getNomenklTopLevel"
-        :key='n.id'
-        style='min-width: 80px'
-        > -->
+        @click="n.itgroup ? $router.push(`${n.guid}`) : null"
+        >
 
-          <q-card class="col-xs-5 col-sm-2 col-md-1"
-          v-for="n in store.getNomenklTopLevel"
-          :key='n.id'
-          style='min-width: 160px'
-          >
-            <!-- <q-avatar square color="grey"  class="fit"><q-img :src="`${n.url}`" /></q-avatar> -->
-            <!-- <q-img class="col" :src="`${n.url}`" /> -->
+          <q-slide-item @left="onLeft" @right="onRight" v-ripple:orange-5.center>
+                  <template v-slot:left>
+                    <div class="row items-center">
+                      <q-icon left name="done" /> Left
+                    </div>
+                  </template>
+                  <template v-slot:right>
+                    <div class="row items-center">
+                      Кол-во... <q-icon right name="alarm" />
+                    </div>
+                  </template>
+
+                  <q-item class="" >
+                    <q-item-section avatar>
+                      <q-avatar>
+                        <img :src="`${n.guid_picture}`" draggable="false">
+                      </q-avatar>
+                    </q-item-section>
+                    <q-item-section>{{n.name}}</q-item-section>
+                  </q-item>
+                </q-slide-item>
 
 
-            <q-skeleton height="180px" class="row justify-center" animation='none' square >
-              <q-img fit='fill' :src="`${n.url}`" style='max-width: 180px;' />
-            </q-skeleton>
+              </q-list>
 
 
-
-
-
-            <q-card-section style='overflow: auto'>
-              <div class="text-subtitle2 text-center"  >{{ n.name }}</div>
-              <!-- <div class="text-subtitle2">by John Doe</div> -->
-            </q-card-section>
-          </q-card>
-        <!-- </q-responsive> -->
-      </div>
-    </q-page>
+  </q-page>
 
 </template>
 
 <script>
+
+export default {
+
+  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+
+    const myStore = useMyStoreNomenklatorSimple(store);
+
+    await axios.get(`https://kolodiva.com${currentRoute.path}`)
+      .then((response) => {
+        //guid.value = response.data.guid
+        //myStore.increment(response.data.guid);
+
+        myStore.setup(response.data);
+
+        //console.log(response.data)
+      })
+      .catch((e) => {
+
+        console.log(e);
+      })
+
+  //console.log(currentRoute.path)
+  }
+
+}
+</script>
+
+<script setup>
+import axios from 'axios'
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 import { onBeforeUnmount } from 'vue'
-import { useMyStoreNomenklator } from 'stores/myStore'
+import { useMyStoreNomenklatorSimple } from 'stores/myStore'
 
-
-export default {
-  setup () {
-    const store = useMyStoreNomenklator();
+    const store = useMyStoreNomenklatorSimple();
 
     const $q = useQuasar()
     let timer
 
-        function finalize (reset) {
+        const finalize  = (reset) => {
           timer = setTimeout(() => {
             reset()
           }, 500)
@@ -61,31 +87,17 @@ export default {
           clearTimeout(timer)
         })
 
-    return {
-      store,
-      onLeft ({ reset }) {
+      const onLeft = ({ reset }) => {
               $q.notify('Left action triggered. Resetting in 1 second.')
               finalize(reset)
-            },
+            }
 
-            onRight ({ reset }) {
+            const onRight = ({ reset }) => {
               $q.notify('Right action triggered. Resetting in 1 second.')
               finalize(reset)
-            },
+            }
 
-            img_count(){
+            const img_count = () => {
               return "https://picsum.photos/500/300?t=" + Math.floor(1000*Math.random())
-            },
-    }
-  }
-}
+            }
 </script>
-
-  <style lang="scss" scoped>
-  .example-item {
-    min-height: 250px;
-    height: 250px;
-    max-height: 250px;
-    width: 160px;
-    }
-  </style>

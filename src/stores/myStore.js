@@ -41,3 +41,17 @@ export const useMyStoreNomenklator = defineStore('nomenklTopLevel', {
   actions: {
   },
 });
+
+export const useMyStoreNomenklatorSimple = defineStore('nomenklSimple', {
+  state: () => ({
+    nomenklSimple: [],
+  }),
+  getters: {
+    getNomenklSimple: (state) => state.nomenklSimple,
+  },
+  actions: {
+    setup(list) {
+      this.nomenklSimple = list;
+    },
+  },
+});
