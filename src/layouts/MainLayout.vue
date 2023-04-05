@@ -47,7 +47,11 @@
 
       <q-page-container>
         <q-page padding style="padding-top: 45px" class="full-height">
-          <router-view/>
+
+          
+          <router-view :key="$route.fullPath"/>
+
+
           <!-- place QPageSticky at end of page -->
           <q-page-sticky expand position="top">
 

@@ -1,12 +1,13 @@
 <template>
   <q-page class="q-py-md">
       <div class="row justify-center q-gutter-md">
+
           <q-card class="col-xs-5 col-sm-2 col-md-1 cursor-pointer"
-          v-for="n in nomenklTopLevel"
+          v-for="n in nomenkl"
           :key='n.id'
           style='min-width: 160px'
            v-ripple:orange-5.center
-           @click="$router.push(`catalog/${n.guid}`)"
+           @click="$router.push(`${n.guid}`)"
           >
             <q-skeleton height="180px" class="row justify-center" animation='none' square>
               <q-img fit='fill' :src="`${n.url_picture}`" style='max-width: 180px;' />
@@ -22,9 +23,5 @@
 </template>
 
 <script setup>
-
-  import { useNomenklatorStore } from 'stores/storeNomenklator'
-
-  const {nomenklTopLevel} = useNomenklatorStore();
-
+  defineProps({nomenkl: Array});
 </script>

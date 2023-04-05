@@ -1,40 +1,6 @@
 <template>
-  <q-page>
-        <div class="text-h6 q-mt-sm">Товары и тара</div>
-
-        <q-list bordered separator v-for="n in store.getNomenklSimple" :key="n.guid" class="text-h6"
-
-        @click="n.itgroup ? $router.push(`${n.guid}`) : null"
-        >
-
-          <q-slide-item @left="onLeft" @right="onRight" v-ripple:orange-5.center>
-                  <template v-slot:left>
-                    <div class="row items-center">
-                      <q-icon left name="done" /> Left
-                    </div>
-                  </template>
-                  <template v-slot:right>
-                    <div class="row items-center">
-                      Кол-во... <q-icon right name="alarm" />
-                    </div>
-                  </template>
-
-                  <q-item class="" >
-                    <q-item-section avatar>
-                      <q-avatar>
-                        <img :src="`${n.guid_picture}`" draggable="false">
-                      </q-avatar>
-                    </q-item-section>
-                    <q-item-section>{{n.name}}</q-item-section>
-                  </q-item>
-                </q-slide-item>
-
-
-              </q-list>
-
-
-  </q-page>
-
+    <GoodsGroup v-if='isGroup' :nomenkl = 'nomenkl' />
+    <GoodsList v-else :nomenkl = 'nomenkl' />
 </template>
 
 <script>
@@ -43,14 +9,12 @@ export default {
 
   async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
-    const myStore = useMyStoreNomenklatorSimple(store);
+    const myStore = useNomenklatorStore(store);
 
     await axios.get(`https://kolodiva.com${currentRoute.path}`)
       .then((response) => {
-        //guid.value = response.data.guid
-        //myStore.increment(response.data.guid);
 
-        myStore.setup(response.data);
+        myStore.setNomenklSimple(response.data);
 
         //console.log(response.data)
       })
@@ -67,37 +31,16 @@ export default {
 
 <script setup>
 import axios from 'axios'
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
-import { onBeforeUnmount } from 'vue'
-import { useMyStoreNomenklatorSimple } from 'stores/myStore'
+import { useNomenklatorStore } from 'stores/storeNomenklator'
+import GoodsGroup from '../components/GoodsGroupCards.vue'
+import GoodsList from '../components/GoodsList.vue'
 
-    const store = useMyStoreNomenklatorSimple();
+    const store = useNomenklatorStore();
 
-    const $q = useQuasar()
-    let timer
+    const nomenkl = store.getNomenklSimple;
 
-        const finalize  = (reset) => {
-          timer = setTimeout(() => {
-            reset()
-          }, 500)
-        }
+    const isGroup = store.isGroup;
 
-        onBeforeUnmount(() => {
-          clearTimeout(timer)
-        })
+    //console.log(isGroup)
 
-      const onLeft = ({ reset }) => {
-              $q.notify('Left action triggered. Resetting in 1 second.')
-              finalize(reset)
-            }
-
-            const onRight = ({ reset }) => {
-              $q.notify('Right action triggered. Resetting in 1 second.')
-              finalize(reset)
-            }
-
-            const img_count = () => {
-              return "https://picsum.photos/500/300?t=" + Math.floor(1000*Math.random())
-            }
 </script>
