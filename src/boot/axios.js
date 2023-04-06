@@ -20,12 +20,12 @@ if (process.env.SERVER) {
   let connid = cookies.get('connectionid');
 
   if (!connid) {
-    connid = uuidv4()
+    connid = uuidv4() + '-' +  uuidv4()
   }
 
   useNomenklatorStore(store).setConnectionId(connid);
 
-  cookies.set('connectionid', connid);
+  cookies.set('connectionid', connid, {expires: 30, path: '/', secure: true, sameSite: 'None'});
   //console.log(ssrContext.cookies)
   //ssrContext.cookies.set('connectionid', connid);
 }
