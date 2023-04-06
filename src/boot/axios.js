@@ -1,6 +1,8 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-
+import { Cookies } from 'quasar'
+import { useNomenklatorStore } from 'stores/storeNomenklator'
+import { v4 as uuidv4 } from "uuid";
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
 // If any client changes this (global) instance, it might be a
@@ -9,7 +11,25 @@ import axios from 'axios'
 // for each client)
 const api = axios.create({ baseURL: 'https://kolodiva.com'})
 
-export default boot(({ app }) => {
+export default boot(({ app, ssrContext, store }) => {
+
+if (process.env.SERVER) {
+
+  let cookies = Cookies.parseSSR(ssrContext);
+
+  let connid = cookies.get('connectionid');
+
+  if (!connid) {
+    connid = uuidv4()
+  }
+
+  useNomenklatorStore(store).setConnectionId(connid);
+
+  cookies.set('connectionid', connid);
+  //console.log(ssrContext.cookies)
+  //ssrContext.cookies.set('connectionid', connid);
+}
+
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 

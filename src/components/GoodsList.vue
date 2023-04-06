@@ -7,7 +7,7 @@
         @click="n.itgroup ? $router.push(`${n.guid}`) : null"
         >
 
-          <q-slide-item @left="onLeft" @right="onRight" v-ripple:orange-5.center>
+          <q-slide-item @left="onLeft" @right="onRight">
                   <template v-slot:left>
                     <div class="row items-center">
                       <q-icon left name="done" /> Left
@@ -21,7 +21,7 @@
 
                   <q-item class="" >
                     <q-item-section avatar>
-                      <q-avatar size='100px'>
+                      <q-avatar size='100px' v-ripple:orange-5.center>
                         <img :src="`${n.url_picture}`" draggable="false">
                       </q-avatar>
                     </q-item-section>

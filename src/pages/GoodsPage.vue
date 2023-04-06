@@ -1,4 +1,5 @@
 <template>
+  <p>connid: {{connectionid}}</p>
   <GoodsGroup v-if='isGroup' :nomenkl='nomenklSimple' />
   <GoodsList v-else :nomenkl='nomenklSimple' />
 </template>
@@ -38,6 +39,8 @@ import GoodsList from '../components/GoodsList.vue'
 import { api } from 'boot/axios'
 import { useNomenklatorStore } from 'stores/storeNomenklator'
 
-    const {nomenklSimple, isGroup} = useNomenklatorStore();
+
+
+    const {nomenklSimple, isGroup, connectionid} = useNomenklatorStore();
 
 </script>
