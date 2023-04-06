@@ -48,7 +48,7 @@
       <q-page-container>
         <q-page padding style="padding-top: 45px" class="full-height">
 
-          
+
           <router-view :key="$route.fullPath"/>
 
 
@@ -74,8 +74,10 @@
                   </q-card>
 
           </q-page-sticky>
+
+
           <!-- place QPageScroller at end of page -->
-                    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]" duration='1000'>
+                    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]" :duration=1000>
                       <q-btn fab icon="keyboard_arrow_up" color="accent" />
                     </q-page-scroller>
         </q-page>
@@ -84,38 +86,14 @@
     </q-layout>
 </template>
 
-<script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
-import { onBeforeUnmount } from 'vue'
+<script setup>
+  import { useQuasar } from 'quasar'
+  import { ref } from 'vue'
 
+  const $q = useQuasar()
 
-export default {
-  setup () {
-    const $q = useQuasar()
+  const tab = ref('goods')
 
-    function navRedirect (e, go) {
-          //e.preventDefault() // we cancel the default navigation
-
-          // call this at your convenience
-          go({
-            to: { path: '/'},
-            //{ query: { path: '/', noScroll: true } },
-            // replace: boolean; default is what the tab is configured with
-            // returnRouterError: boolean; default is false
-          })
-          .then(vueRouterResult => { console.log(vueRouterResult)/* ... */ })
-          .catch(vueRouterError => {
-            /* ...will not reach here unless returnRouterError === true */
-          })
-        }
-
-    return {
-      drawerLeft: ref($q.screen.width > 5700),
-      drawerRight: ref($q.screen.width > 5500),
-      tab: ref('goods'),
-      navRedirect
-    }
-  }
-}
+  const drawerLeft = ref($q.screen.width > 5700)
+  const drawerRight = ref($q.screen.width > 5500)
 </script>

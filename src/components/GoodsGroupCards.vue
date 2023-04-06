@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-py-md">
+  <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Каталог" @click='$router.go(-1)'/>
       <div class="row justify-center q-gutter-md">
 
           <q-card class="col-xs-5 col-sm-2 col-md-1 cursor-pointer"
@@ -19,7 +19,6 @@
           </q-card>
         <!-- </q-responsive> -->
       </div>
-    </q-page>
 </template>
 
 <script setup>
