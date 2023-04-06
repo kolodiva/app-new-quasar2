@@ -1,5 +1,6 @@
 import { ssrMiddleware } from 'quasar/wrappers'
 
+
 // This middleware should execute as last one
 // since it captures everything and tries to
 // render the page with Vue

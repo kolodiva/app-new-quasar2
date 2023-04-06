@@ -21,7 +21,7 @@
 
                   <q-item class="" >
                     <q-item-section avatar>
-                      <q-avatar>
+                      <q-avatar size='100px'>
                         <img :src="`${n.url_picture}`" draggable="false">
                       </q-avatar>
                     </q-item-section>
