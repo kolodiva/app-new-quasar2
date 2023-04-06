@@ -1,9 +1,6 @@
 <template>
-  <q-page>
-        <!-- <div class="text-h6 q-mt-sm">Товары и тара</div> -->
-        <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/>
 
-        <router-view :key="$route.fullPath"/>
+        <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/>
 
         <q-list bordered separator v-for="n in nomenkl" :key="n.guid" class="text-h6"
 
@@ -32,7 +29,7 @@
                   </q-item>
                 </q-slide-item>
               </q-list>
-  </q-page>
+
 </template>
 
 <script setup>

@@ -1,6 +1,6 @@
 <template>
-    <GoodsGroup v-if='isGroup' :nomenkl = 'nomenkl' />
-    <GoodsList v-else :nomenkl = 'nomenkl' />
+  <GoodsGroup v-if='isGroup' :nomenkl='nomenklSimple' />
+  <GoodsList v-else :nomenkl='nomenklSimple' />
 </template>
 
 <script>
@@ -11,16 +11,19 @@ export default {
 
     const myStore = useNomenklatorStore(store);
 
-    await axios.get(`https://kolodiva.com${currentRoute.path}`)
+    await api.get(`${currentRoute.path}`)
       .then((response) => {
-
         myStore.setNomenklSimple(response.data);
-
-        //console.log(response.data)
       })
       .catch((e) => {
 
-        console.log(e);
+        // $q.notify({
+        //   color: 'negative',
+        //   position: 'top',
+        //   message: `Loading failed ${e}`,
+        //   icon: 'report_problem'
+        // })
+         console.log(e);
       })
 
   //console.log(currentRoute.path)
@@ -30,17 +33,11 @@ export default {
 </script>
 
 <script setup>
-import axios from 'axios'
-import { useNomenklatorStore } from 'stores/storeNomenklator'
 import GoodsGroup from '../components/GoodsGroupCards.vue'
 import GoodsList from '../components/GoodsList.vue'
+import { api } from 'boot/axios'
+import { useNomenklatorStore } from 'stores/storeNomenklator'
 
-    const store = useNomenklatorStore();
-
-    const nomenkl = store.getNomenklSimple;
-
-    const isGroup = store.isGroup;
-
-    //console.log(isGroup)
+    const {nomenklSimple, isGroup} = useNomenklatorStore();
 
 </script>

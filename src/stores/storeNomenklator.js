@@ -16,6 +16,6 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
         nomenklSimple.value = rows
     }
 
-    return {nomenklTopLevel, getNomenklSimple, setNomenklSimple, isGroup}
+    return {nomenklTopLevel, nomenklSimple, getNomenklSimple, setNomenklSimple, isGroup}
 
 });
