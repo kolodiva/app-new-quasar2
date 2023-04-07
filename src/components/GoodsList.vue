@@ -57,13 +57,13 @@
 
     const onLeft = ({ reset }, guid) => {
             emit('changeOrder', guid, 1)
-            $q.notify({type: 'positive', message: 'Добавлена 1 ед. в корзину.'})
+            $q.notify({type: 'positive', message: 'Добавлена 1 ед. в корзину.', timeout: 500})
             finalize(reset)
           }
 
           const onRight = ({ reset }, guid) => {
             emit('changeOrder', guid, -1)
-            $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.'})
+            $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.', timeout: 500})
             finalize(reset)
           }
 
