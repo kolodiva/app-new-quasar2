@@ -10,8 +10,16 @@ import { v4 as uuidv4 } from "uuid";
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-const api = axios.create({ baseURL: 'https://kolodiva.com'})
-//const api = axios.create({ baseURL: 'http://localhost:3000'})
+let api
+
+if (process.env.NODE_ENV === 'development') {
+
+    api = axios.create({ baseURL: 'http://localhost:3000'})
+
+  } else {
+
+    api = axios.create({ baseURL: 'https://kolodiva.com'})
+  }
 
 export default boot(({ app, ssrContext, store }) => {
 

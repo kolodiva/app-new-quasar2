@@ -27,7 +27,6 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
 
     async function changeOrderPos(guid, qty) {
 
-      //console.log({connectionid: connectionid.value, guid, qty});
       const obj = nomenklSimple.value.find(o => o.guid === guid);
 
       await api.post('changeorder', {connectionid: connectionid.value, guid, qty: parseFloat(obj.qty_order) + qty},
