@@ -30,7 +30,12 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
       //console.log({connectionid: connectionid.value, guid, qty});
       const obj = nomenklSimple.value.find(o => o.guid === guid);
 
-      await api.post('changeorder', {connectionid: connectionid.value, guid, qty: parseFloat(obj.qty_order) + qty})
+      await api.post('changeorder', {connectionid: connectionid.value, guid, qty: parseFloat(obj.qty_order) + qty},
+        {
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
         .then((response) => {
 
           //console.log(response);
