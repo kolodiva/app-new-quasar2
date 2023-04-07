@@ -7,7 +7,7 @@
         @click="n.itgroup ? $router.push(`${n.guid}`) : null"
         >
 
-          <q-slide-item @left="opt => onLeft(opt, `${n.guid}`)" @right="opt => onRight(opt, `${n.guid}`)">
+          <q-slide-item @left="opt => onLeft(opt, n)" @right="opt => onRight(opt, n)">
                   <template v-slot:left>
                     <div class="row items-center">
                       <q-icon left name="add" /> +1
@@ -55,15 +55,18 @@
         clearTimeout(timer)
       })
 
-    const onLeft = ({ reset }, guid) => {
-            emit('changeOrder', guid, 1)
+    const onLeft = ({ reset }, n) => {
+            emit('changeOrder', n.guid, 1)
             $q.notify({type: 'positive', message: 'Добавлена 1 ед. в корзину.', timeout: 500})
             finalize(reset)
           }
 
-          const onRight = ({ reset }, guid) => {
-            emit('changeOrder', guid, -1)
-            $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.', timeout: 500})
+          const onRight = ({ reset }, n) => {
+            const op = n.qty_order;
+            emit('changeOrder', n.guid, -1)
+            if (op > 0 ) {
+              $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.', timeout: 500})
+            }
             finalize(reset)
           }
 
