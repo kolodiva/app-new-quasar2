@@ -28,7 +28,7 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     function changeOrderPos(quid, qty) {
 
         const obj = nomenklSimple.value.find(o => o.guid === quid);
-        obj.qty_order = parseFloat(obj.qty_order) + qty;
+        obj.qty_order = Math.max(0, parseFloat(obj.qty_order) + qty);
     }
 
     //
