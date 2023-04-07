@@ -22,7 +22,7 @@
                   <q-item class="" >
                     <q-item-section avatar>
                       <q-avatar size='100px' v-ripple:orange-5.center>
-                        <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm">{{n.qty_order}}</q-badge>
+                        <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm">{{n.qty_order}}</q-badge>
                         <img :src="`${n.url_picture}`" draggable="false">
                       </q-avatar>
                     </q-item-section>
