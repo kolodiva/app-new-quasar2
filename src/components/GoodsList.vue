@@ -15,7 +15,7 @@
                   </template>
                   <template v-slot:right>
                     <div class="row items-center">
-                      -1 <q-icon right name="clear" />
+                      <q-icon right name="clear" />
                     </div>
                   </template>
 
@@ -57,13 +57,13 @@
 
     const onLeft = ({ reset }, guid) => {
             emit('changeOrder', guid, 1)
-            $q.notify('Добавлена 1 ед. в корзину.')
+            $q.notify({type: 'positive', message: 'Добавлена 1 ед. в корзину.'})
             finalize(reset)
           }
 
           const onRight = ({ reset }, guid) => {
             emit('changeOrder', guid, -1)
-            $q.notify('Удалена 1 ед. из корзины.')
+            $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.'})
             finalize(reset)
           }
 
