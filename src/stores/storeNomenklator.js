@@ -33,7 +33,8 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
       await api.post('changeorder', {connectionid: connectionid.value, guid, qty: parseFloat(obj.qty_order) + qty},
         {
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Access-Control-Allow-Headers': 'authorization',
           }
         })
         .then((response) => {
