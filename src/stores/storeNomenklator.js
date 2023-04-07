@@ -25,10 +25,28 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
         return connectionid.value = connid
     }
 
-    function changeOrderPos(quid, qty) {
+    async function changeOrderPos(guid, qty) {
 
-        const obj = nomenklSimple.value.find(o => o.guid === quid);
-        obj.qty_order = Math.max(0, parseFloat(obj.qty_order) + qty);
+      //console.log({connectionid: connectionid.value, guid, qty});
+      const obj = nomenklSimple.value.find(o => o.guid === guid);
+
+      await api.post('changeorder', {connectionid: connectionid.value, guid, qty: parseFloat(obj.qty_order) + qty})
+        .then((response) => {
+
+          //console.log(response);
+          obj.qty_order = Math.max(0, parseFloat(obj.qty_order) + qty);
+        })
+        .catch((e) => {
+
+          // $q.notify({
+          //   color: 'negative',
+          //   position: 'top',
+          //   message: `Loading failed ${e}`,
+          //   icon: 'report_problem'
+          // })
+           console.log(e);
+        })
+
     }
 
     //
