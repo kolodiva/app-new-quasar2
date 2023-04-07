@@ -34,7 +34,7 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
         {
           headers: {
             'content-type': 'application/json',
-            'Access-Control-Allow-Headers': 'Authorization',
+            // 'Access-Control-Allow-Headers': 'Authorization',
           }
         })
         .then((response) => {
