@@ -1,7 +1,7 @@
 <template>
-  <p>connid: {{connectionid}}</p>
+  <p class="q-ma-none q-mt-sm">connid: {{connectionid}}</p>
   <GoodsGroup v-if='isGroup' :nomenkl='nomenklSimple' />
-  <GoodsList v-else :nomenkl='nomenklSimple' />
+  <GoodsList v-else :nomenkl='nomenklSimple' @changeOrder='changeOrder'/>
 </template>
 
 <script>
@@ -39,8 +39,10 @@ import GoodsList from '../components/GoodsList.vue'
 import { api } from 'boot/axios'
 import { useNomenklatorStore } from 'stores/storeNomenklator'
 
+const {nomenklSimple, isGroup, connectionid, changeOrderPos} = useNomenklatorStore();
 
-
-    const {nomenklSimple, isGroup, connectionid} = useNomenklatorStore();
+const changeOrder = (guid, qty) => {
+   changeOrderPos(guid, qty)
+}
 
 </script>

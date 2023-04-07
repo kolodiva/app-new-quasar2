@@ -7,21 +7,22 @@
         @click="n.itgroup ? $router.push(`${n.guid}`) : null"
         >
 
-          <q-slide-item @left="onLeft" @right="onRight">
+          <q-slide-item @left="opt => onLeft(opt, `${n.guid}`)" @right="opt => onRight(opt, `${n.guid}`)">
                   <template v-slot:left>
                     <div class="row items-center">
-                      <q-icon left name="done" /> Left
+                      <q-icon left name="add" /> +1
                     </div>
                   </template>
                   <template v-slot:right>
                     <div class="row items-center">
-                      Кол-во... <q-icon right name="alarm" />
+                      -1 <q-icon right name="clear" />
                     </div>
                   </template>
 
                   <q-item class="" >
                     <q-item-section avatar>
                       <q-avatar size='100px' v-ripple:orange-5.center>
+                        <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm">{{n.qty_order}}</q-badge>
                         <img :src="`${n.url_picture}`" draggable="false">
                       </q-avatar>
                     </q-item-section>
@@ -38,27 +39,31 @@
   import { onBeforeUnmount } from 'vue'
 
   defineProps({nomenkl: Array});
+  const emit = defineEmits(['changeOrder']);
 
   const $q = useQuasar()
+
   let timer
 
       const finalize  = (reset) => {
         timer = setTimeout(() => {
           reset()
-        }, 500)
+        }, 200)
       }
 
       onBeforeUnmount(() => {
         clearTimeout(timer)
       })
 
-    const onLeft = ({ reset }) => {
-            $q.notify('Left action triggered. Resetting in 1 second.')
+    const onLeft = ({ reset }, guid) => {
+            emit('changeOrder', guid, 1)
+            $q.notify('Добавлена 1 ед. в корзину.')
             finalize(reset)
           }
 
-          const onRight = ({ reset }) => {
-            $q.notify('Right action triggered. Resetting in 1 second.')
+          const onRight = ({ reset }, guid) => {
+            emit('changeOrder', guid, -1)
+            $q.notify('Удалена 1 ед. из корзины.')
             finalize(reset)
           }
 

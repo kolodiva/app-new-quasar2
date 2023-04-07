@@ -23,13 +23,8 @@ if (process.env.SERVER) {
     connid = uuidv4() + '-' +  uuidv4()
   }
 
-  useNomenklatorStore(store).setConnectionId(connid);
-
-  cookies.set('connectionid', connid, {expires: 30, path: '/', secure: true, sameSite: 'None'});
-  //console.log(ssrContext.cookies)
-  //ssrContext.cookies.set('connectionid', connid);
+  cookies.set('connectionid', useNomenklatorStore(store).setConnectionId(connid), {expires: 30, path: '/', secure: true, sameSite: 'None'});
 }
-
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
