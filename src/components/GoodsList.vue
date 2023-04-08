@@ -3,6 +3,12 @@
         <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/> -->
         <q-card class="my-card q-mt-md" bordered v-for="n in nomenkl" :key="n.guid"  style='font-size: 1.2rem;'>
 
+          <q-card-section horizontal class="q-mx-none q-pl-md" style="color: #1976d2; background-color: #c8c6c6;">
+             {{n.artikul}}, {{n.artikul_new}}
+          </q-card-section>
+
+          <q-separator />
+
           <q-card-section horizontal>
               <q-item>
                 <q-list >
@@ -21,7 +27,7 @@
 
                 <q-item-section avatar>
                   <q-avatar size='150px' v-ripple:orange-5.center>
-                    <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm">{{n.qty_order}}</q-badge>
+                    <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm q-pa-sm" style='font-size: 1.1rem;'>{{n.qty_order}}</q-badge>
                     <img :src="`${n.url_picture}`" draggable="false">
                   </q-avatar>
                 </q-item-section>
@@ -39,12 +45,6 @@
               </q-card-section>
 
             </q-card-section>
-
-              <q-separator />
-
-              <q-card-section horizontal class="q-ml-md">
-                 {{n.artikul}}, {{n.artikul_new}}
-              </q-card-section>
 
               <q-separator />
 
