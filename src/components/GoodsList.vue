@@ -68,7 +68,6 @@
                   {{n.name}}
                 </q-card-section>
 
-
                 </q-slide-item>
 
                 </q-list>
@@ -88,6 +87,8 @@
   import { useQuasar } from 'quasar'
   import { onBeforeUnmount } from 'vue'
 
+  import sndclac from 'assets/gluhoy-schelchok-s-ehom.mp3'
+
   defineProps({nomenkl: Array});
   const emit = defineEmits(['changeOrder']);
 
@@ -105,19 +106,26 @@
         clearTimeout(timer)
       })
 
-    const onLeft = ({ reset }, n) => {
+      const beeper = () => {
+        let sound = new Audio(sndclac);
+        sound.play();
+      }
+
+      const onLeft = ({ reset }, n) => {
+            beeper()
             emit('changeOrder', n.guid, 1)
             $q.notify({type: 'positive', message: 'Добавлена 1 ед. в корзину.', timeout: 500})
             finalize(reset)
           }
 
-          const onRight = ({ reset }, n) => {
+      const onRight = ({ reset }, n) => {
+            beeper()
             const op = n.qty_order;
             emit('changeOrder', n.guid, -1)
             if (op > 0 ) {
               $q.notify({type: 'negative', message: 'Удалена 1 ед. из корзины.', timeout: 500})
             }
             finalize(reset)
-          }
+        }
 
 </script>
