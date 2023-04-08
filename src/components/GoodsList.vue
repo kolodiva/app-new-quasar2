@@ -87,7 +87,8 @@
   import { useQuasar } from 'quasar'
   import { onBeforeUnmount } from 'vue'
 
-  import sndclac from 'assets/gluhoy-schelchok-s-ehom.mp3'
+  //import sndclac from 'assets/gluhoy-schelchok-s-ehom.mp3'
+  import sndclac from 'assets/klaves-odinochnyiy-schelchok.mp3'
 
   defineProps({nomenkl: Array});
   const emit = defineEmits(['changeOrder']);
