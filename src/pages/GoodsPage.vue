@@ -12,7 +12,7 @@ export default {
 
     const myStore = useNomenklatorStore(store);
 
-    await api.get(currentRoute.path, {headers: {'connid': myStore.connectionid}, params: {connid: myStore.connectionid}})
+    await api.get(currentRoute.path, {headers: {'connid': myStore.connectionid}, params: {connid: uuidv4() + '-' +  uuidv4()}})
       .then((response) => {
         myStore.setNomenklSimple(response.data);
       })
@@ -34,6 +34,7 @@ export default {
 </script>
 
 <script setup>
+import { v4 as uuidv4 } from "uuid";
 import GoodsGroup from '../components/GoodsGroupCards.vue'
 import GoodsList from '../components/GoodsList.vue'
 import { api } from 'boot/axios'
