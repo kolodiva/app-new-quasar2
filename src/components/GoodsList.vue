@@ -48,7 +48,7 @@
 
               <q-separator />
 
-              <q-card-section >
+              <q-card-section class='q-pa-none'>
 
                 <q-list >
 
