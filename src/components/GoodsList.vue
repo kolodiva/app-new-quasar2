@@ -1,7 +1,9 @@
 <template>
 
         <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/> -->
-        <q-card class="my-card q-mt-sm" flat bordered v-for="n in nomenkl" :key="n.guid" >
+        <q-card class="my-card q-mt-md" bordered v-for="n in nomenkl" :key="n.guid"  style='font-size: 1.1rem;'>
+
+          <q-card-section horizontal>
               <q-item>
                 <q-list >
 
@@ -17,7 +19,6 @@
                             </div>
                           </template>
 
-
                 <q-item-section avatar>
                   <q-avatar size='150px' v-ripple:orange-5.center>
                     <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm">{{n.qty_order}}</q-badge>
@@ -25,20 +26,30 @@
                   </q-avatar>
                 </q-item-section>
 
-</q-slide-item>
+              </q-slide-item>
 
               </q-list>
+
               </q-item>
+
+              <q-separator vertical/>
+
+              <q-card-section class="col-4">
+                Остатки МСК, Цена итд
+              </q-card-section>
+
+            </q-card-section>
 
               <q-separator />
 
-              <q-card-section horizontal>
+              <q-card-section horizontal class="q-ml-md">
+                 {{n.artikul}}, {{n.artikul_new}}
+              </q-card-section>
 
-                <q-card-section>
-                   {{n.artikul}}
-                </q-card-section>
+              <q-separator />
 
-                <q-separator vertical />
+              <q-card-section horizontal
+              >
 
                 <q-list >
 
@@ -53,15 +64,15 @@
                               <q-icon right name="clear" />
                             </div>
                           </template>
-                <q-card-section class="col-4">
+
+                <q-card-section class="">
                   {{n.name}}
                 </q-card-section>
 
 
-              </q-slide-item>
+                </q-slide-item>
 
-                            </q-list>
-
+                </q-list>
 
 
               </q-card-section>
