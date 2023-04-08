@@ -12,7 +12,7 @@ export default {
 
     const myStore = useNomenklatorStore(store);
 
-    await api.get(currentRoute.path, {headers: {'connid': myStore.connectionid}, params: {connid: uuidv4() + '-' +  uuidv4()}})
+    await api.get(currentRoute.path, {headers: {'Sec-Fetch-Snt': myStore.connectionid}, params: {connid: uuidv4() + '-' +  uuidv4()}})
       .then((response) => {
         myStore.setNomenklSimple(response.data);
       })
