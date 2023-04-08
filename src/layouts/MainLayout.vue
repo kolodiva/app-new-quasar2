@@ -77,10 +77,10 @@
 
           <!-- place QPageScroller at end of page -->
                     <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[18, 18]" duration=1000  >
-                      <q-btn round dense icon="keyboard_arrow_up" color="primary" />
+                      <q-btn round  icon="keyboard_arrow_up" color="primary" />
                     </q-page-scroller>
                     <q-page-sticky v-if="$route.path!='/'" position="bottom-left" :offset="[18, 18]">
-                      <q-btn round dense color="accent" icon="keyboard_arrow_left" @click='$router.go(-1)' />
+                      <q-btn round  color="accent" icon="keyboard_arrow_left" @click='$router.go(-1)' />
                     </q-page-sticky>
         </q-page>
 
