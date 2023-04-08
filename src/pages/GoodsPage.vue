@@ -1,5 +1,5 @@
 <template>
-  <p class="q-ma-none q-mt-sm">connid: {{connectionid}}</p>
+  <!-- <p class="q-ma-none q-mt-sm">connid: {{connectionid}}</p> -->
   <GoodsGroup v-if='isGroup' :nomenkl='nomenklSimple' />
   <GoodsList v-else :nomenkl='nomenklSimple' @changeOrder='changeOrder'/>
 </template>

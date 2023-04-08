@@ -1,6 +1,6 @@
 <template>
-  <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Каталог" @click='$router.go(-1)'/>
-      <div class="row justify-center q-gutter-md">
+  <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Каталог" @click='$router.go(-1)'/> -->
+      <div class="row justify-center q-gutter-md  q-mt-xs">
 
           <q-card class="col-xs-5 col-sm-2 col-md-1 cursor-pointer"
           v-for="n in nomenkl"

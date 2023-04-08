@@ -1,35 +1,75 @@
 <template>
 
-        <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/>
+        <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/> -->
+        <q-card class="my-card q-mt-sm" flat bordered v-for="n in nomenkl" :key="n.guid" >
+              <q-item>
+                <q-list >
 
-        <q-list bordered separator v-for="n in nomenkl" :key="n.guid" class="text-h6"
+                  <q-slide-item @left="opt => onLeft(opt, n)" @right="opt => onRight(opt, n)">
+                          <template v-slot:left>
+                            <div class="row items-center">
+                              <q-icon left name="add" /> +1
+                            </div>
+                          </template>
+                          <template v-slot:right>
+                            <div class="row items-center">
+                              <q-icon right name="clear" />
+                            </div>
+                          </template>
 
-        @click="n.itgroup ? $router.push(`${n.guid}`) : null"
-        >
 
-          <q-slide-item @left="opt => onLeft(opt, n)" @right="opt => onRight(opt, n)">
-                  <template v-slot:left>
-                    <div class="row items-center">
-                      <q-icon left name="add" /> +1
-                    </div>
-                  </template>
-                  <template v-slot:right>
-                    <div class="row items-center">
-                      <q-icon right name="clear" />
-                    </div>
-                  </template>
+                <q-item-section avatar>
+                  <q-avatar size='150px' v-ripple:orange-5.center>
+                    <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm">{{n.qty_order}}</q-badge>
+                    <img :src="`${n.url_picture}`" draggable="false">
+                  </q-avatar>
+                </q-item-section>
 
-                  <q-item class="" >
-                    <q-item-section avatar>
-                      <q-avatar size='100px' v-ripple:orange-5.center>
-                        <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm">{{n.qty_order}}</q-badge>
-                        <img :src="`${n.url_picture}`" draggable="false">
-                      </q-avatar>
-                    </q-item-section>
-                    <q-item-section>{{n.name}}</q-item-section>
-                  </q-item>
-                </q-slide-item>
+</q-slide-item>
+
               </q-list>
+              </q-item>
+
+              <q-separator />
+
+              <q-card-section horizontal>
+
+                <q-card-section>
+                   {{n.artikul}}
+                </q-card-section>
+
+                <q-separator vertical />
+
+                <q-list >
+
+                  <q-slide-item @left="opt => onLeft(opt, n)" @right="opt => onRight(opt, n)">
+                          <template v-slot:left>
+                            <div class="row items-center">
+                              <q-icon left name="add" /> +1
+                            </div>
+                          </template>
+                          <template v-slot:right>
+                            <div class="row items-center">
+                              <q-icon right name="clear" />
+                            </div>
+                          </template>
+                <q-card-section class="col-4">
+                  {{n.name}}
+                </q-card-section>
+
+
+              </q-slide-item>
+
+                            </q-list>
+
+
+
+              </q-card-section>
+
+
+
+
+            </q-card>
 
 </template>
 
