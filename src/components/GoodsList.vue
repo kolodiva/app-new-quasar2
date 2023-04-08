@@ -1,7 +1,7 @@
 <template>
 
         <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/> -->
-        <q-card class="my-card q-mt-md" bordered v-for="n in nomenkl" :key="n.guid"  style='font-size: 1.1rem;'>
+        <q-card class="my-card q-mt-md" bordered v-for="n in nomenkl" :key="n.guid"  style='font-size: 1.2rem;'>
 
           <q-card-section horizontal>
               <q-item>
