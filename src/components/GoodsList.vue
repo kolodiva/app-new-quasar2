@@ -48,8 +48,7 @@
 
               <q-separator />
 
-              <q-card-section horizontal
-              >
+              <q-card-section >
 
                 <q-list >
 
