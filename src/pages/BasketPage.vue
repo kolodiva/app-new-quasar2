@@ -1,5 +1,6 @@
 <template>
   <!-- <p class="q-ma-none q-mt-sm">connid: {{connectionid}}</p> -->
+  <h6 class="q-my-sm text-primary" >Вот и до корзины дело дошло...</h6>
   <GoodsList :nomenkl='nomenklSimple' @changeOrder='changeOrder'/>
 </template>
 
