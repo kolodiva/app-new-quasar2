@@ -65,7 +65,7 @@
               >
                 <q-route-tab to="/" exact no-caps name="goods" label="" icon='home'/>
                 <q-route-tab to="/basket" exact name="basket" label="" icon='shopping_cart'>
-                  <q-badge v-if='myStory.getQtyOrder > 0' color="green" floating class="" style=''>{{myStory.getQtyOrder}}</q-badge>
+                  <q-badge v-if='myStory.qtyOrder > 0' color="green" floating class="" style=''>{{myStory.qtyOrder}}</q-badge>
                 </q-route-tab>
                 <q-route-tab to="/orders" exact name="orders" label="" icon='list_alt' />
                 <q-route-tab to="/contacts" exact name="contacts" label="" icon='contact_phone'/>
