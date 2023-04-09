@@ -9,6 +9,7 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     const nomenklTopLevel = ref(topNomenkl)
     const nomenklSimple = ref([])
     const connectionid = ref('')
+    const qty_order = ref(0)
 
     //getter
     const getNomenklSimple = computed(() => nomenklSimple.value)
@@ -17,6 +18,9 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     //setter
     function setNomenklSimple(rows) {
         nomenklSimple.value = rows
+        if (rows && rows.length > 0) {
+          qty_order.value = rows[0].order_qty
+        }
     }
 
     function setConnectionId(connid) {
@@ -55,5 +59,5 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     }
 
     //
-    return {nomenklTopLevel, nomenklSimple, getNomenklSimple, setNomenklSimple, isGroup, setConnectionId, connectionid, changeOrderPos}
+    return {nomenklTopLevel, nomenklSimple, getNomenklSimple, setNomenklSimple, isGroup, setConnectionId, connectionid, changeOrderPos, qty_order}
 });

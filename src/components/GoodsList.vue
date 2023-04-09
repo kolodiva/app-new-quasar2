@@ -3,7 +3,7 @@
         <!-- <q-btn class="q-my-md" icon="arrow_back" outline rounded color="primary" label="Товары и тара" @click='$router.go(-1)'/> -->
         <q-card class="my-card q-mt-md" bordered v-for="n in nomenkl" :key="n.guid"  style='font-size: 1.2rem;'>
 
-          <q-card-section horizontal class="q-mx-none q-pl-md" style="color: #1976d2; background-color: #c8c6c6;">
+          <q-card-section horizontal class="q-mx-none q-pl-md  q-py-sm" style="color: #1976d2; background-color: #c8c6c687;">
              {{n.artikul}}, {{n.artikul_new}}
           </q-card-section>
 

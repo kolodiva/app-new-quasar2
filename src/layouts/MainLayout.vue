@@ -64,7 +64,9 @@
                 style="height: 45px;"
               >
                 <q-route-tab to="/" exact no-caps name="goods" label="" icon='home'/>
-                <q-route-tab to="/basket" exact name="basket" label="" icon='shopping_cart'/>
+                <q-route-tab to="/basket" exact name="basket" label="" icon='shopping_cart'>
+                  <q-badge v-if='qty_order > 0' color="green" floating class="" style=''>{{qty_order}}</q-badge>
+                </q-route-tab>
                 <q-route-tab to="/orders" exact name="orders" label="" icon='list_alt' />
                 <q-route-tab to="/contacts" exact name="contacts" label="" icon='contact_phone'/>
               </q-tabs>
@@ -91,6 +93,10 @@
 <script setup>
   import { useQuasar } from 'quasar'
   import { ref } from 'vue'
+  import { useNomenklatorStore } from 'stores/storeNomenklator'
+
+  const {qty_order} = useNomenklatorStore();
+
 
   const $q = useQuasar()
 

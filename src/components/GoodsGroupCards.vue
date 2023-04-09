@@ -6,11 +6,11 @@
           v-for="n in nomenkl"
           :key='n.id'
           style='min-width: 160px'
-           v-ripple:orange-5.center
+
            @click="$router.push(`${n.guid}`)"
           >
             <q-skeleton height="180px" class="row justify-center" animation='none' square>
-              <q-img fit='fill' :src="`${n.url_picture}`" style='max-width: 180px;' />
+              <q-img fit='fill' :src="`${n.url_picture}`" style='max-width: 180px;'  v-ripple:orange-5.center/>
             </q-skeleton>
 
             <q-card-section style='overflow: auto'>

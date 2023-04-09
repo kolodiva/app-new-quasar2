@@ -1,54 +1,49 @@
 <template>
-  <q-page>
-        <div class="text-h6 q-mt-sm">Хлам в Корзине</div>
-
-
-        <div class="q-mb-xs" >
-          <p v-for="n in 50" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-          </p>
-            </div>
-
-
-
-  </q-page>
+  <!-- <p class="q-ma-none q-mt-sm">connid: {{connectionid}}</p> -->
+  <GoodsList :nomenkl='nomenklSimple' @changeOrder='changeOrder'/>
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
-import { onBeforeUnmount } from 'vue'
 
 export default {
-  setup () {
-    const $q = useQuasar()
-    let timer
 
-        function finalize (reset) {
-          timer = setTimeout(() => {
-            reset()
-          }, 1000)
-        }
+  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
-        onBeforeUnmount(() => {
-          clearTimeout(timer)
-        })
+    const myStore = useNomenklatorStore(store);
 
-    return {
-      onLeft ({ reset }) {
-              $q.notify('Left action triggered. Resetting in 1 second.')
-              finalize(reset)
-            },
+    await api.get(currentRoute.path, {headers: {'Hostes': myStore.connectionid}, params: {connid: uuidv4() + '-' +  uuidv4()}})
+      .then((response) => {
+        //console.log(response.data);
+        myStore.setNomenklSimple(response.data);
+      })
+      .catch((e) => {
 
-            onRight ({ reset }) {
-              $q.notify('Right action triggered. Resetting in 1 second.')
-              finalize(reset)
-            },
+        // $q.notify({
+        //   color: 'negative',
+        //   position: 'top',
+        //   message: `Loading failed ${e}`,
+        //   icon: 'report_problem'
+        // })
+         console.log(e);
+      })
 
-            img_count(){
-              return "https://picsum.photos/500/300?t=" + Math.floor(1000*Math.random())
-            },
-    }
+  //console.log(currentRoute.path)
   }
+
 }
+</script>
+
+<script setup>
+import { v4 as uuidv4 } from "uuid";
+import GoodsGroup from '../components/GoodsGroupCards.vue'
+import GoodsList from '../components/GoodsList.vue'
+import { api } from 'boot/axios'
+import { useNomenklatorStore } from 'stores/storeNomenklator'
+
+const {nomenklSimple, isGroup, connectionid, changeOrderPos} = useNomenklatorStore();
+
+const changeOrder = (guid, qty) => {
+   changeOrderPos(guid, qty)
+}
+
 </script>
