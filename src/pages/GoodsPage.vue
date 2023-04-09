@@ -14,6 +14,7 @@ export default {
 
     await api.get(currentRoute.path, {headers: {'Hostes': myStore.connectionid}, params: {connid: uuidv4() + '-' +  uuidv4()}})
       .then((response) => {
+        //console.log(response.data)
         myStore.setNomenklSimple(response.data);
       })
       .catch((e) => {

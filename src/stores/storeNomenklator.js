@@ -9,17 +9,18 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     const nomenklTopLevel = ref(topNomenkl)
     const nomenklSimple = ref([])
     const connectionid = ref('')
-    const qty_order = ref(0)
+    const qtyOrder = ref(0)
 
     //getter
     const getNomenklSimple = computed(() => nomenklSimple.value)
     const isGroup = computed(() => nomenklSimple.value && nomenklSimple.value[0] && nomenklSimple.value[0].itgroup)
+    const getQtyOrder = computed(() => qtyOrder.value)
 
     //setter
     function setNomenklSimple(rows) {
         nomenklSimple.value = rows
         if (rows && rows.length > 0) {
-          qty_order.value = rows[0].order_qty
+          qtyOrder.value = rows[0].order_qty
         }
     }
 
@@ -42,8 +43,12 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
         })
         .then((response) => {
 
-          //console.log(response);
+          //console.log(response.data.order_qty);
+
           obj.qty_order = Math.max(0, parseFloat(obj.qty_order) + qty);
+
+          qtyOrder.value = response.data.order_qty;
+
         })
         .catch((e) => {
 
@@ -59,5 +64,5 @@ export const useNomenklatorStore = defineStore('nomenklator', () => {
     }
 
     //
-    return {nomenklTopLevel, nomenklSimple, getNomenklSimple, setNomenklSimple, isGroup, setConnectionId, connectionid, changeOrderPos, qty_order}
+    return {nomenklTopLevel, nomenklSimple, getNomenklSimple, setNomenklSimple, isGroup, setConnectionId, connectionid, changeOrderPos, qtyOrder, getQtyOrder }
 });
