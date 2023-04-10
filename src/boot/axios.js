@@ -21,23 +21,36 @@ if (process.env.NODE_ENV === 'development') {
     api = axios.create({ baseURL: 'https://kolodiva.com/api1'})
   }
 
-export default boot(({ app, ssrContext, store }) => {
+export default boot(async ({ app, ssrContext, store, urlPath }) => {
 
-if (process.env.SERVER) {
-
-  let cookies = Cookies.parseSSR(ssrContext);
+  const cookies = process.env.SERVER
+      ? Cookies.parseSSR(ssrContext)
+      : Cookies // otherwise we're on client
 
   let connid = cookies.get('connectionid');
 
-  if (!connid) {
-    connid = uuidv4() + '-' +  uuidv4()
+
+  if (/^\/(?!robots).*$/mi.test(urlPath)) {
+
+    let connidnew;
+
+    if (connid) {
+
+        const connidnew = await useNomenklatorStore(store).setConnectionId(connid);
+
+      } else {
+
+        //если его не было то создаем его и он попадет в БД при первом добавлении товара, просто так не стоит тащить нового в базу мало ли ск их будет
+        connidnew = uuidv4() + '-' +  uuidv4();
+    }
+
+    if (connidnew && connidnew !== connid) {
+      cookies.set('connectionid', connidnew, {expires: 30, path: '/', secure: true, sameSite: 'None'});
+    }
   }
 
-  cookies.set('connectionid', useNomenklatorStore(store).setConnectionId(connid), {expires: 30, path: '/', secure: true, sameSite: 'None'});
-}
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
-
   app.config.globalProperties.$axios = axios
   // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)
   //       so you won't necessarily have to import axios in each vue file

@@ -27,7 +27,7 @@
 
                 <q-item-section avatar>
                   <q-avatar size='150px' v-ripple:orange-5.center>
-                    <q-badge v-if='n.qty_order > 0' color="red" floating class="q-mt-sm  q-mr-sm q-pa-sm" style='font-size: 1.1rem;'>{{n.qty_order}}</q-badge>
+                    <q-badge v-if='n.qty_order > 0 || (n.qty_order === 0 && showzero)' color="red" floating class="q-mt-sm  q-mr-sm q-pa-sm" style='font-size: 1.1rem;'>{{n.qty_order}}</q-badge>
                     <img :src="`${n.url_picture}`" draggable="false">
                   </q-avatar>
                 </q-item-section>
@@ -90,7 +90,8 @@
   //import sndclac from 'assets/gluhoy-schelchok-s-ehom.mp3'
   import sndclac from 'assets/klaves-odinochnyiy-schelchok.mp3'
 
-  defineProps({nomenkl: Array});
+  defineProps({nomenkl: {type: Array}, showzero: {type: Boolean, default: false}});
+
   const emit = defineEmits(['changeOrder']);
 
   const $q = useQuasar()
