@@ -47,6 +47,8 @@
 
           <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData'/>
 
+          <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData1'/>
+
           <div>{{descr}}</div>
 
           <router-view :key="$route.fullPath"/>
@@ -121,6 +123,43 @@
 
       try {
         const res = await api.post('initstart', {id:'ddddd'}, {
+              headers: {
+              'content-type': 'application/json',
+              // 'Access-Control-Allow-Headers': 'Authorization',
+            }
+          })
+
+          descr.value = res.data;
+
+      } catch (e) {
+
+      }
+
+
+    // collector.value = await postQuery({oper:'initData', id: collector.value.id})
+    // const res = await postQueryTG({oper:'initData', id: collector.value.id})
+    //
+    // //console.log(res.resp)
+    //
+    // if (res.resp) {
+    //   collector.value = res.resp;
+    // } else {
+    //   $q.notify({
+    //     color: 'negative',
+    //     position: 'top',
+    //     message: `Loading failed ${res.error}`,
+    //     icon: 'report_problem'
+    //   })
+    // }
+
+  //  console.log(queryResp)
+
+  }
+
+  const initData1 = async () => {
+
+      try {
+        const res = await api.post('ddddd', {id:'ddddd'}, {
               headers: {
               'content-type': 'application/json',
               // 'Access-Control-Allow-Headers': 'Authorization',
