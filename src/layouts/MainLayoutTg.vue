@@ -52,7 +52,7 @@
 
           <!-- <router-view :key="$route.fullPath"/> -->
 
-          <div>{{initData1}}</div>
+          <div class="text-white">{{initData1}}</div>
 
         </q-page>
 
