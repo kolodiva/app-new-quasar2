@@ -15,7 +15,7 @@
                     v-model="collector.participate"
                     checked-icon="check"
                     color="red"
-                    label="Учавствую"
+                    label="Участвую"
                     unchecked-icon="clear"
                     left-label
                     @click='inActive'
@@ -47,10 +47,6 @@
 
           <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData'/>
 
-          <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData1'/>
-
-          <div>{{descr}}</div>
-
           <router-view :key="$route.fullPath"/>
 
         </q-page>
@@ -60,7 +56,7 @@
 </template>
 
 <script setup>
-  import { api } from 'boot/axios'
+  import { postQueryTG } from 'boot/axios'
 
   import { useQuasar } from 'quasar';
   import { ref } from 'vue';
@@ -98,99 +94,47 @@
     // console.log('myheader mounted');
     //console.log($appNameNickname);
 
-    //initData()
+    initData()
     //queryResp1 = getCurrentInstance().appContext.config.globalProperties.$appNameNickname
 
   })
 
   const inActive = async () => {
     //console.log(collector.value)
-    // const res = await postQueryTG({oper:'inActive', collector: collector.value })
-    //
-    // if (res.resp) {
-    //   collector.value = res.resp;
-    // } else {
-    //   $q.notify({
-    //     color: 'negative',
-    //     position: 'top',
-    //     message: `Loading failed ${res.error}`,
-    //     icon: 'report_problem'
-    //   })
-    // }
+    const res = await postQueryTG({oper:'inActive', collector: collector.value })
+
+    if (res.resp) {
+      collector.value = res.resp;
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Loading failed ${res.error}`,
+        icon: 'report_problem'
+      })
+    }
   }
 
   const initData = async () => {
 
-      try {
-        const res = await api.post('initstart', {id:'ddddd'},
-          {
-            headers: {
-            'content-type': 'application/json',
-            }
-          })
+    const res = await postQueryTG({oper:'initData', id: collector.value.id})
 
-          descr.value = res.data;
+    //console.log(res.resp)
 
-      } catch (e) {
-
-      }
-
-
-    // collector.value = await postQuery({oper:'initData', id: collector.value.id})
-    // const res = await postQueryTG({oper:'initData', id: collector.value.id})
-    //
-    // //console.log(res.resp)
-    //
-    // if (res.resp) {
-    //   collector.value = res.resp;
-    // } else {
-    //   $q.notify({
-    //     color: 'negative',
-    //     position: 'top',
-    //     message: `Loading failed ${res.error}`,
-    //     icon: 'report_problem'
-    //   })
-    // }
+    if (res.resp) {
+      collector.value = res.resp;
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Loading failed ${res.error}`,
+        icon: 'report_problem'
+      })
+    }
 
   //  console.log(queryResp)
 
   }
 
-  const initData1 = async () => {
-
-      try {
-        const res = await api.post('ddddd', {id:'ddddd'},
-          {
-            headers: {
-              "Accept": "*/*, application/json, text/plain",
-              'Content-Type': 'application/json'            }
-          })
-
-          descr.value = res.data;
-
-      } catch (e) {
-
-      }
-
-
-    // collector.value = await postQuery({oper:'initData', id: collector.value.id})
-    // const res = await postQueryTG({oper:'initData', id: collector.value.id})
-    //
-    // //console.log(res.resp)
-    //
-    // if (res.resp) {
-    //   collector.value = res.resp;
-    // } else {
-    //   $q.notify({
-    //     color: 'negative',
-    //     position: 'top',
-    //     message: `Loading failed ${res.error}`,
-    //     icon: 'report_problem'
-    //   })
-    // }
-
-  //  console.log(queryResp)
-
-  }
 
 </script>
