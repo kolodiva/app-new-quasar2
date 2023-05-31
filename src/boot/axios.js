@@ -14,7 +14,8 @@ let api
 
 if (process.env.NODE_ENV === 'development') {
 
-    api = axios.create({ baseURL: 'http://localhost:3000/api1'})
+    // api = axios.create({ baseURL: 'http://localhost:3000/api1'})
+    api = axios.create({ baseURL: 'http://localhost:5173/api1'})
 
   } else {
 
@@ -58,6 +59,45 @@ export default boot(async ({ app, ssrContext, store, urlPath }) => {
   app.config.globalProperties.$api = api
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
+
 })
 
-export { api, axios }
+const postQueryTG = (params) => {
+
+  api.post('tg/mfcrevizorro', params,
+    {
+      headers: {
+        'content-type': 'application/json',
+        // 'Access-Control-Allow-Headers': 'Authorization',
+      }
+    })
+    .then((response) => {
+
+      //console.log({resp: response.data, error: null})
+
+      return {resp: response.data, error: null};
+
+      // $q.notify({
+      //   color: 'positive',
+      //   position: 'bottom',
+      //   message: `Loading OK`,
+      //   icon: 'report_problem'
+      // })
+
+    })
+    .catch((e) => {
+
+      // $q.notify({
+      //   color: 'negative',
+      //   position: 'top',
+      //   message: `Loading failed ${e}`,
+      //   icon: 'report_problem'
+      // })
+      return {resp: null, error: e};
+       //console.log(e);
+    })
+
+}
+
+
+export { api, axios, postQueryTG }
