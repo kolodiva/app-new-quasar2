@@ -162,8 +162,8 @@
         const res = await api.post('ddddd', {id:'ddddd'},
           {
             headers: {
-            'content-type': 'application/json',
-            }
+              accept: 'application/json',
+              'Content-Type': 'application/json'            }
           })
 
           descr.value = res.data;
