@@ -15,11 +15,11 @@ let api
 if (process.env.NODE_ENV === 'development') {
 
     // api = axios.create({ baseURL: 'http://localhost:3000/api1'})
-    api = axios.create({ baseURL: 'http://localhost:5173/api1'})
+    api = axios.create({ baseURL: '//localhost:5173/api1'})
 
   } else {
 
-    api = axios.create({ baseURL: 'http://kolodiva.com/api1'})
+    api = axios.create({ baseURL: '//kolodiva.com/api1'})
   }
 
 export default boot(async ({ app, ssrContext, store, urlPath }) => {
