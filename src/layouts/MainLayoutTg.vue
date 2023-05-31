@@ -122,7 +122,12 @@
   const initData = async () => {
 
       try {
-        const res = await api.post('initstart', {id:'ddddd'})
+        const res = await api.post('initstart', {id:'ddddd'},
+          {
+            headers: {
+            'content-type': 'application/json',
+            }
+          })
 
           descr.value = res.data;
 
@@ -154,7 +159,12 @@
   const initData1 = async () => {
 
       try {
-        const res = await api.post('ddddd', {id:'ddddd'})
+        const res = await api.post('ddddd', {id:'ddddd'},
+          {
+            headers: {
+            'content-type': 'application/json',
+            }
+          })
 
           descr.value = res.data;
 
