@@ -48,9 +48,11 @@
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='sendTime'/>
 
-          <div>{{initData1}}</div>
 
-          <router-view :key="$route.fullPath"/>
+
+          <!-- <router-view :key="$route.fullPath"/> -->
+
+          <div>{{initData1}}</div>
 
         </q-page>
 
