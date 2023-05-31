@@ -101,8 +101,15 @@
     //console.log(collector.value)
     const res = await postQueryTG({oper:'inActive', collector: collector.value })
 
-    if (res) {
-      collector.value = res;
+    if (res.resp) {
+      collector.value = res.resp;
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Loading failed ${res.error}`,
+        icon: 'report_problem'
+      })
     }
   }
 
@@ -111,8 +118,17 @@
     // collector.value = await postQuery({oper:'initData', id: collector.value.id})
     const res = await postQueryTG({oper:'initData', id: collector.value.id})
 
-    if (res) {
-      collector.value = res;
+    //console.log(res.resp)
+
+    if (res.resp) {
+      collector.value = res.resp;
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Loading failed ${res.error}`,
+        icon: 'report_problem'
+      })
     }
 
   //  console.log(queryResp)

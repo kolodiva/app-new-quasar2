@@ -62,41 +62,21 @@ export default boot(async ({ app, ssrContext, store, urlPath }) => {
 
 })
 
-const postQueryTG = (params) => {
+const postQueryTG = async (params) => {
 
-  api.post('tg', params,
-    {
-      headers: {
-        'content-type': 'application/json',
-        // 'Access-Control-Allow-Headers': 'Authorization',
-      }
-    })
-    .then((response) => {
+  try {
+    const res = await api.post('tg/mfcrevizorro', params, {
+          headers: {
+          'content-type': 'application/json',
+          // 'Access-Control-Allow-Headers': 'Authorization',
+        }
+      })
 
-      //console.log({resp: response.data, error: null})
+      return {resp: res.data, error: null};
 
-      return {resp: response.data, error: null};
-
-      // $q.notify({
-      //   color: 'positive',
-      //   position: 'bottom',
-      //   message: `Loading OK`,
-      //   icon: 'report_problem'
-      // })
-
-    })
-    .catch((e) => {
-
-      // $q.notify({
-      //   color: 'negative',
-      //   position: 'top',
-      //   message: `Loading failed ${e}`,
-      //   icon: 'report_problem'
-      // })
-      return {resp: null, error: e};
-       //console.log(e);
-    })
-
+  } catch (e) {
+    return {resp: null, error: e};
+  }
 }
 
 
