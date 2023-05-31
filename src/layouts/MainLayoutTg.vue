@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-  import { postQueryTG } from 'boot/axios'
+//  import { postQueryTG } from 'boot/axios'
 
   import { useQuasar } from 'quasar';
   import { ref } from 'vue';
@@ -92,44 +92,44 @@
     // console.log('myheader mounted');
     //console.log($appNameNickname);
 
-    initData()
+    //initData()
     //queryResp1 = getCurrentInstance().appContext.config.globalProperties.$appNameNickname
 
   })
 
   const inActive = async () => {
     //console.log(collector.value)
-    const res = await postQueryTG({oper:'inActive', collector: collector.value })
-
-    if (res.resp) {
-      collector.value = res.resp;
-    } else {
-      $q.notify({
-        color: 'negative',
-        position: 'top',
-        message: `Loading failed ${res.error}`,
-        icon: 'report_problem'
-      })
-    }
+    // const res = await postQueryTG({oper:'inActive', collector: collector.value })
+    //
+    // if (res.resp) {
+    //   collector.value = res.resp;
+    // } else {
+    //   $q.notify({
+    //     color: 'negative',
+    //     position: 'top',
+    //     message: `Loading failed ${res.error}`,
+    //     icon: 'report_problem'
+    //   })
+    // }
   }
 
   const initData = async () => {
 
     // collector.value = await postQuery({oper:'initData', id: collector.value.id})
-    const res = await postQueryTG({oper:'initData', id: collector.value.id})
-
-    //console.log(res.resp)
-
-    if (res.resp) {
-      collector.value = res.resp;
-    } else {
-      $q.notify({
-        color: 'negative',
-        position: 'top',
-        message: `Loading failed ${res.error}`,
-        icon: 'report_problem'
-      })
-    }
+    // const res = await postQueryTG({oper:'initData', id: collector.value.id})
+    //
+    // //console.log(res.resp)
+    //
+    // if (res.resp) {
+    //   collector.value = res.resp;
+    // } else {
+    //   $q.notify({
+    //     color: 'negative',
+    //     position: 'top',
+    //     message: `Loading failed ${res.error}`,
+    //     icon: 'report_problem'
+    //   })
+    // }
 
   //  console.log(queryResp)
 

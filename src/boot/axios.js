@@ -62,22 +62,22 @@ export default boot(async ({ app, ssrContext, store, urlPath }) => {
 
 })
 
-const postQueryTG = async (params) => {
+// const postQueryTG = async (params) => {
+//
+//   try {
+//     const res = await api.post('tg1', params, {
+//           headers: {
+//           'content-type': 'application/json',
+//           // 'Access-Control-Allow-Headers': 'Authorization',
+//         }
+//       })
+//
+//       return {resp: res.data, error: null};
+//
+//   } catch (e) {
+//     return {resp: null, error: e};
+//   }
+// }
 
-  try {
-    const res = await api.post('tg1', params, {
-          headers: {
-          'content-type': 'application/json',
-          // 'Access-Control-Allow-Headers': 'Authorization',
-        }
-      })
 
-      return {resp: res.data, error: null};
-
-  } catch (e) {
-    return {resp: null, error: e};
-  }
-}
-
-
-export { api, axios, postQueryTG }
+export { api, axios }
