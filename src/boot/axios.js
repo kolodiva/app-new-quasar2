@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 
   } else {
 
-    api = axios.create({ baseURL: 'kolodiva.com/api1'})
+    api = axios.create({ baseURL: 'http://kolodiva.com/api1'})
   }
 
 export default boot(async ({ app, ssrContext, store, urlPath }) => {
