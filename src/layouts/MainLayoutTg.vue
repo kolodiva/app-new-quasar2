@@ -159,12 +159,7 @@
   const initData1 = async () => {
 
       try {
-        const res = await api.post('ddddd', {id:'ddddd'}, {
-              headers: {
-              'content-type': 'application/json',
-              // 'Access-Control-Allow-Headers': 'Authorization',
-            }
-          })
+        const res = await api.post('ddddd', {id:'ddddd'})
 
           descr.value = res.data;
 
