@@ -48,6 +48,8 @@
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='sendTime'/>
 
+          <div>{{initData1}}</div>
+
           <router-view :key="$route.fullPath"/>
 
         </q-page>
@@ -91,6 +93,8 @@
 
   let tgbot;
 
+  let initData1 = ref()
+
   onMounted(() => {
     // console.log('myheader mounted');
     //console.log($appNameNickname);
@@ -99,6 +103,8 @@
 
   		tgbot.expand(); //расширяем на все окно
       //console.log(tgbot)
+
+      initData1.value = tgbot.initData || 'Нет данных...';
 
     } catch (e) {
         //console.log(e)
