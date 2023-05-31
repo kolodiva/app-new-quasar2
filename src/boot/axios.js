@@ -64,7 +64,7 @@ export default boot(async ({ app, ssrContext, store, urlPath }) => {
 
 const postQueryTG = (params) => {
 
-  api.post('tg/mfcrevizorro', params,
+  api.post('tg', params,
     {
       headers: {
         'content-type': 'application/json',
