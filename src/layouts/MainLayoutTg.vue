@@ -45,7 +45,8 @@
       <q-page-container>
         <q-page padding style="" class="full-height">
 
-          <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
+          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
+          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='sendTime'/>
 
           <router-view :key="$route.fullPath"/>
 
@@ -132,7 +133,11 @@
     }
 
   }
-
+  const sendTime = () => {
+    for (let i = 0; i < 3; i++) {
+               tgbot.sendData(new Date().toString());
+           }
+  }
   const inActive = async () => {
     //console.log(collector.value)
     const res = await postQueryTG({oper:'inActive', collector: collector.value })
