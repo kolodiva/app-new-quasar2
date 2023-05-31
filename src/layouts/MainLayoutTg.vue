@@ -45,7 +45,7 @@
       <q-page-container>
         <q-page padding style="" class="full-height">
 
-          <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData'/>
+          <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
 
           <router-view :key="$route.fullPath"/>
 
@@ -109,6 +109,29 @@
     //queryResp1 = getCurrentInstance().appContext.config.globalProperties.$appNameNickname
 
   })
+
+  const showPopup = () => {
+
+    if (tgbot) {
+
+      tgbot.showPopup({
+                      title: 'Popup title',
+                      message: 'Popup message',
+                      buttons: [
+                          {id: 'delete', type: 'destructive', text: 'Delete all'},
+                          {id: 'faq', type: 'default', text: 'Open FAQ'},
+                          {type: 'cancel'},
+                      ]
+                  }, function(buttonId) {
+                      if (buttonId === 'delete') {
+                          // DemoApp.showAlert("'Delete all' selected");
+                      } else if (buttonId === 'faq') {
+                          tgbot.openLink('https://telegram.org/faq');
+                      }
+                  });
+    }
+
+  }
 
   const inActive = async () => {
     //console.log(collector.value)
