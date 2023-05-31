@@ -47,6 +47,8 @@
 
           <q-btn class='q-ma-sm' round color="secondary" icon="refresh" @click='initData'/>
 
+          <div>{{descr}}</div>
+
           <router-view :key="$route.fullPath"/>
 
         </q-page>
@@ -56,7 +58,7 @@
 </template>
 
 <script setup>
-//  import { postQueryTG } from 'boot/axios'
+  import { api } from 'boot/axios'
 
   import { useQuasar } from 'quasar';
   import { ref } from 'vue';
@@ -88,6 +90,8 @@
 
   let collector = ref({id:999, participate: false})
 
+  let descr =  ref('')
+
   onMounted(() => {
     // console.log('myheader mounted');
     //console.log($appNameNickname);
@@ -114,6 +118,21 @@
   }
 
   const initData = async () => {
+
+      try {
+        const res = await api.post('ddddd', {id:'ddddd'}, {
+              headers: {
+              'content-type': 'application/json',
+              // 'Access-Control-Allow-Headers': 'Authorization',
+            }
+          })
+
+          descr.value = res.data;
+
+      } catch (e) {
+
+      }
+
 
     // collector.value = await postQuery({oper:'initData', id: collector.value.id})
     // const res = await postQueryTG({oper:'initData', id: collector.value.id})
