@@ -120,7 +120,7 @@
   const initData = async () => {
 
       try {
-        const res = await api.post('ddddd', {id:'ddddd'}, {
+        const res = await api.post('initstart', {id:'ddddd'}, {
               headers: {
               'content-type': 'application/json',
               // 'Access-Control-Allow-Headers': 'Authorization',
