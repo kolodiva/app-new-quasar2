@@ -61,7 +61,7 @@
   import { useQuasar } from 'quasar';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-   import { onMounted } from 'vue';
+  import { onMounted } from 'vue';
 
   const router = useRouter();
 
@@ -88,11 +88,22 @@
 
   let collector = ref({id:999, participate: false})
 
-  let descr =  ref('')
+  let tgbot;
 
   onMounted(() => {
     // console.log('myheader mounted');
     //console.log($appNameNickname);
+    try {
+      tgbot = window.Telegram.WebApp; //получаем объект webapp телеграма
+
+  		tgbot.expand(); //расширяем на все окно
+      //console.log(tgbot)
+
+    } catch (e) {
+        //console.log(e)
+    } finally {
+
+    }
 
     initData()
     //queryResp1 = getCurrentInstance().appContext.config.globalProperties.$appNameNickname
