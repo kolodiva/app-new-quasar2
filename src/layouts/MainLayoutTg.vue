@@ -162,7 +162,7 @@
         const res = await api.post('ddddd', {id:'ddddd'},
           {
             headers: {
-              accept: 'application/json',
+              "Accept": "*/*, application/json, text/plain",
               'Content-Type': 'application/json'            }
           })
 
