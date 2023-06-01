@@ -19,6 +19,7 @@
                     unchecked-icon="clear"
                     left-label
                     @click='inActive'
+                    :disable='!initDataNotEmpty'
                   />
           </div>
 
@@ -46,14 +47,12 @@
         <q-page padding style="" class="full-height">
 
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
-          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='sendTime'/>
 
 
 
           <!-- <router-view :key="$route.fullPath"/> -->
 
-          <div class="text-green">{{initData1}}</div>
-          <div class="text-green">{{initData2}}</div>
+          <div class="text-green">{{initData}}</div>
 
         </q-page>
 
@@ -65,7 +64,7 @@
   import { postQueryTG } from 'boot/axios'
 
   import { useQuasar } from 'quasar';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import { onMounted } from 'vue';
 
@@ -90,14 +89,15 @@
   const drawerLeft = ref($q.screen.width > 5700)
   const drawerRight = ref($q.screen.width > 5500)
 
-  let participate = ref(false)
-
-  let collector = ref({id:999, nickname: 'Nemo', participate: false})
+  let collector = ref({id:1, nickname: 'Nemo', participate: false})
 
   let tgbot;
 
-  let initData1 = ref('Нет данных...')
-  let initData2 = ref({})
+  let initData = ref({})
+
+  const initDataNotEmpty = computed(() => {
+    return JSON.stringify(initData.value) !== "{}"
+  })
 
   onMounted(() => {
     // console.log('myheader mounted');
@@ -108,8 +108,7 @@
   		tgbot.expand(); //расширяем на все окно
       //console.log(tgbot.initData)
 
-      initData1.value = tgbot && tgbot.initData || 'Нет данных...';
-      initData2.value = tgbot && tgbot.initDataUnsafe || {};
+      initData.value = tgbot && tgbot.initDataUnsafe || {};
 
     } catch (e) {
         //console.log(e)
@@ -117,14 +116,14 @@
 
     }
 
-    initData()
+    initDataNotEmpty.value && authData()
     //queryResp1 = getCurrentInstance().appContext.config.globalProperties.$appNameNickname
 
   })
 
   const showPopup = () => {
 
-    if (tgbot) {
+    if (initDataNotEmpty.value) {
 
       tgbot.showPopup({
                       title: 'Popup title',
@@ -141,6 +140,14 @@
                           tgbot.openLink('https://telegram.org/faq');
                       }
                   });
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Мы не в Телеге, Увы!`,
+        icon: 'report_problem'
+      })
+
     }
 
   }
@@ -150,7 +157,13 @@
            }
   }
   const inActive = async () => {
-    //console.log(collector.value)
+
+    if (!initDataNotEmpty.value) {
+      return
+    }
+
+    console.log(collector.value)
+
     const res = await postQueryTG({oper:'inActive', collector: collector.value })
 
     if (res.resp) {
@@ -165,9 +178,9 @@
     }
   }
 
-  const initData = async () => {
+  const authData = async () => {
 
-    const res = await postQueryTG({oper:'initData', id: collector.value.id})
+    const res = await postQueryTG({oper:'initData', id: initData.value.user.id, nickname: initData.value.user.first_name})
 
     //console.log(res.resp)
 
