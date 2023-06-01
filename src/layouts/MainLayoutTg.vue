@@ -52,7 +52,7 @@
 
           <!-- <router-view :key="$route.fullPath"/> -->
 
-          <div class="text-green">{{initData}}</div>
+          <!-- <div class="text-green">{{initData}}</div> -->
 
         </q-page>
 
@@ -67,6 +67,8 @@
   import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import { onMounted } from 'vue';
+
+  import {isEmpty} from 'lodash';
 
   const router = useRouter();
 
@@ -96,7 +98,7 @@
   let initData = ref({})
 
   const initDataNotEmpty = computed(() => {
-    return JSON.stringify(initData.value) !== "{}"
+    return !isEmpty(initData.value)
   })
 
   onMounted(() => {
@@ -141,6 +143,7 @@
                       }
                   });
     } else {
+
       $q.notify({
         color: 'negative',
         position: 'top',
@@ -159,6 +162,13 @@
   const inActive = async () => {
 
     if (!initDataNotEmpty.value) {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Go в Телеграмм... @Artamon!`,
+        icon: 'report_problem'
+      })
+
       return
     }
 
