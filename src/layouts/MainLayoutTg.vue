@@ -4,7 +4,7 @@
         <q-toolbar>
 
           <q-toolbar-title>
-            Сборка: {{collector.nickname}}
+            {{collector.nickname}}
           </q-toolbar-title>
 
           <!-- <q-btn flat round dense icon="search" /> -->
@@ -52,7 +52,8 @@
 
           <!-- <router-view :key="$route.fullPath"/> -->
 
-          <div class="text-white">{{initData1}}</div>
+          <div class="text-green">{{initData1}}</div>
+          <div class="text-green">{{initData2}}</div>
 
         </q-page>
 
@@ -91,11 +92,12 @@
 
   let participate = ref(false)
 
-  let collector = ref({id:999, participate: false})
+  let collector = ref({id:999, nickname: 'Nemo', participate: false})
 
   let tgbot;
 
-  let initData1 = ref()
+  let initData1 = ref('Нет данных...')
+  let initData2 = ref({})
 
   onMounted(() => {
     // console.log('myheader mounted');
@@ -104,9 +106,10 @@
       tgbot = window.Telegram.WebApp; //получаем объект webapp телеграма
 
   		tgbot.expand(); //расширяем на все окно
-      //console.log(tgbot)
+      //console.log(tgbot.initData)
 
-      initData1.value = tgbot.initData || 'Нет данных...';
+      initData1.value = tgbot && tgbot.initData || 'Нет данных...';
+      initData2.value = tgbot && tgbot.initDataUnsafe || {};
 
     } catch (e) {
         //console.log(e)
