@@ -12,9 +12,17 @@ export const useTGStore = defineStore('tg', () => {
 
         collector.value = resp;
 
-        if (resp.orders && resp.orders.orders_ids) {
-            orders.value = resp.orders.orders_ids;
+        if (!resp.participate) {
+
+          orders.value = [];
+
+        } else {
+
+          if (resp.orders && resp.orders.orders_ids) {
+              orders.value = resp.orders.orders_ids;
+          }
         }
+
       }
     //
     return {collector, orders, setCollector}
