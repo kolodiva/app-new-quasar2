@@ -4,7 +4,7 @@
         <q-toolbar>
 
           <q-toolbar-title>
-            {{collector.nickname}}
+            {{myStoreTG.collector.nickname}}
           </q-toolbar-title>
 
           <!-- <q-btn flat round dense icon="search" /> -->
@@ -12,7 +12,7 @@
           <div class="cursor-pointer text-right" style="">
 
             <q-toggle
-                    v-model="collector.participate"
+                    v-model="myStoreTG.collector.participate"
                     checked-icon="check"
                     color="red"
                     label="Участвую"
@@ -50,25 +50,7 @@
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="mail" @click='testOrders'/>
 
 
-          <q-list bordered>
-            <div v-for="n in collector.orders&&collector.orders.orders_ids" :key='n.order_guid'>
-                <q-expansion-item group="somegroup" icon="shopping_cart" :label="`${n.order_id}`" header-class="text-teal" expand-icon-class="text-teal">
-                  <q-card class="bg-teal-2">
-                    <q-card-section>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                      commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                      eveniet doloribus ullam aliquid.
-                    </q-card-section>
-                  </q-card>
-                </q-expansion-item>
-
-                <q-separator />
-              </div>
-
-        </q-list>
-
-
-          <!-- <router-view :key="$route.fullPath"/> -->
+          <router-view :key="$route.fullPath"/>
 
           <!-- <div class="text-green">{{initData}}</div> -->
 
@@ -87,6 +69,10 @@
   import { onMounted } from 'vue';
 
   import {isEmpty} from 'lodash';
+
+  import { useTGStore } from 'stores/storeTG'
+
+  const myStoreTG = useTGStore();
 
   const router = useRouter();
 
@@ -109,7 +95,7 @@
   const drawerLeft = ref($q.screen.width > 5700)
   const drawerRight = ref($q.screen.width > 5500)
 
-  let collector = ref({id:1, nickname: 'Nemo', participate: false})
+  //let collector = ref({id:1, nickname: 'Nemo', participate: false})
 
   let tgbot;
 
@@ -231,10 +217,10 @@
 
     const res = await postQueryTG({oper:'initData', id: initData.value.user ? initData.value.user.id : 999})
 
-    //console.log(res.resp)
+    console.log(res.resp)
 
     if (res.resp) {
-      collector.value = res.resp;
+      myStoreTG.setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',
