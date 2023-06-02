@@ -47,7 +47,25 @@
         <q-page padding style="" class="full-height">
 
           <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
+          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="mail" @click='testOrders'/>
 
+
+          <q-list bordered>
+            <div v-for="n in collector.orders&&collector.orders.orders_ids" :key='n.order_guid'>
+                <q-expansion-item group="somegroup" icon="shopping_cart" :label="`${n.order_id}`" header-class="text-teal" expand-icon-class="text-teal">
+                  <q-card class="bg-teal-2">
+                    <q-card-section>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                      commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                      eveniet doloribus ullam aliquid.
+                    </q-card-section>
+                  </q-card>
+                </q-expansion-item>
+
+                <q-separator />
+              </div>
+
+        </q-list>
 
 
           <!-- <router-view :key="$route.fullPath"/> -->
@@ -209,5 +227,25 @@
 
   }
 
+  const testOrders = async () => {
+
+    const res = await postQueryTG({oper:'initData', id: 999})
+
+    //console.log(res.resp)
+
+    if (res.resp) {
+      collector.value = res.resp;
+    } else {
+      $q.notify({
+        color: 'negative',
+        position: 'top',
+        message: `Loading failed ${res.error}`,
+        icon: 'report_problem'
+      })
+    }
+
+  //  console.log(queryResp)
+
+  }
 
 </script>
