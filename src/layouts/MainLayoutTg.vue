@@ -176,12 +176,12 @@
       return
     }
 
-    console.log(collector.value)
+    //console.log(collector.value)
 
     const res = await postQueryTG({oper:'inActive', collector: collector.value })
 
     if (res.resp) {
-      collector.value = res.resp;
+      myStoreTG.setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',
@@ -199,7 +199,7 @@
     //console.log(res.resp)
 
     if (res.resp) {
-      collector.value = res.resp;
+      myStoreTG.setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',
@@ -217,7 +217,7 @@
 
     const res = await postQueryTG({oper:'initData', id: initData.value.user ? initData.value.user.id : 999})
 
-    console.log(res.resp)
+    //console.log(res.resp)
 
     if (res.resp) {
       myStoreTG.setCollector(res.resp);

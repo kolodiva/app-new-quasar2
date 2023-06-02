@@ -9,10 +9,13 @@ export const useTGStore = defineStore('tg', () => {
     const orders = ref([])
 
     async function setCollector(resp) {
-        collector.value = resp;
-        orders.value = resp.orders.orders_ids;
-      }
 
+        collector.value = resp;
+
+        if (resp.orders && resp.orders.orders_ids) {
+            orders.value = resp.orders.orders_ids;
+        }
+      }
     //
     return {collector, orders, setCollector}
 });
