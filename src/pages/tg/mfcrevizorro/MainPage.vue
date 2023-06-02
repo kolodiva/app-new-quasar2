@@ -3,7 +3,7 @@
 
     <q-list bordered>
       <div v-for="n in myStoreTG.orders" :key='n.order_guid'>
-          <q-expansion-item group="somegroup" icon="shopping_cart" :label="`${n.order_id}`" header-class="text-teal" expand-icon-class="text-teal">
+          <q-expansion-item class="text-h6" group="somegroup" icon="shopping_cart" :label="`${n.order_id}`" header-class="text-teal" expand-icon-class="text-teal">
             <q-card class="bg-teal-2">
               <q-card-section>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
