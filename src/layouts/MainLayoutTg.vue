@@ -229,7 +229,7 @@
 
   const testOrders = async () => {
 
-    const res = await postQueryTG({oper:'initData', id: 999})
+    const res = await postQueryTG({oper:'initData', id: initData.value.user ? initData.value.user.id : 999})
 
     //console.log(res.resp)
 
