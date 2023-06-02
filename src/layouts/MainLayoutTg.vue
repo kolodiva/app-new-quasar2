@@ -178,7 +178,7 @@
 
     //console.log(collector.value)
 
-    const res = await postQueryTG({oper:'inActive', collector: collector.value })
+    const res = await postQueryTG({oper:'inActive', collector: myStoreTG.collector })
 
     if (res.resp) {
       myStoreTG.setCollector(res.resp);
