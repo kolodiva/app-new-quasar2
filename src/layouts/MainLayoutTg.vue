@@ -19,6 +19,7 @@
                     unchecked-icon="clear"
                     left-label
                     @click='inActive'
+                    :disable='switchEnable'
                   />
           </div>
 
@@ -63,6 +64,8 @@
 
   //const qtyOrder = computed(() => {return myStory.getQtyOrder});
   const $q = useQuasar()
+
+  const switchEnable = ref(true)
 
   const alert = function(msg) {
       $q.dialog({
