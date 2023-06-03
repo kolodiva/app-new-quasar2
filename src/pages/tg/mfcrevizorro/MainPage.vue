@@ -2,7 +2,7 @@
   <q-page class="bg-white text-blue q-pa-md">
 
     <q-list bordered>
-      <div v-for="n in myStoreTG.orders" :key='n.order_guid'>
+      <div v-for="n in orders" :key='n.order_guid'>
           <q-expansion-item class="text-h6" group="somegroup" icon="shopping_cart" :label="`${n.order_id}`" header-class="text-teal" expand-icon-class="text-teal">
             <q-card class="bg-teal-2">
               <q-card-section>
@@ -26,7 +26,9 @@
 <script setup>
 
   import { useTGStore } from 'stores/storeTG'
+  import { storeToRefs } from 'pinia'
 
-  const myStoreTG = useTGStore();
+  const storeTG = useTGStore();
+  const {orders} = storeToRefs(storeTG);
 
 </script>

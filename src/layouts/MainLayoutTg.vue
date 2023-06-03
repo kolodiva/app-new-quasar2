@@ -4,7 +4,7 @@
         <q-toolbar>
 
           <q-toolbar-title>
-            {{myStoreTG.collector.nickname}}
+            {{collector.nickname}}
           </q-toolbar-title>
 
           <!-- <q-btn flat round dense icon="search" /> -->
@@ -12,7 +12,7 @@
           <div class="cursor-pointer text-right" style="">
 
             <q-toggle
-                    v-model="myStoreTG.collector.participate"
+                    v-model="collector.participate"
                     checked-icon="check"
                     color="red"
                     label="Участвую"
@@ -25,23 +25,6 @@
 
       </q-toolbar>
   </q-header>
-
-      <q-drawer
-        side="left"
-        v-model="drawerLeft"
-        bordered
-        :width="150"
-        :breakpoint="500"
-        behavior="mobile"
-        overlay
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-      >
-        <q-scroll-area class="fit">
-          <div class="q-pa-sm">
-            <div v-for="n in 10" :key="n">Пункт меню {{ n }} / 10</div>
-          </div>
-        </q-scroll-area>
-      </q-drawer>
 
       <q-page-container>
         <q-page padding style="" class="full-height">
@@ -71,8 +54,11 @@
   import {isEmpty} from 'lodash';
 
   import { useTGStore } from 'stores/storeTG'
+  import { storeToRefs } from 'pinia'
 
-  const myStoreTG = useTGStore();
+  const storeTG = useTGStore();
+  const {collector} = storeToRefs(storeTG);
+  const {setCollector} = storeTG;
 
   const router = useRouter();
 
@@ -178,10 +164,10 @@
 
     //console.log(collector.value)
 
-    const res = await postQueryTG({oper:'inActive', collector: myStoreTG.collector })
+    const res = await postQueryTG({oper:'inActive', collector })
 
     if (res.resp) {
-      myStoreTG.setCollector(res.resp);
+      setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',
@@ -199,7 +185,7 @@
     //console.log(res.resp)
 
     if (res.resp) {
-      myStoreTG.setCollector(res.resp);
+      setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',
@@ -220,7 +206,7 @@
     //console.log(res.resp)
 
     if (res.resp) {
-      myStoreTG.setCollector(res.resp);
+      setCollector(res.resp);
     } else {
       $q.notify({
         color: 'negative',

@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { api } from 'boot/axios'
+// import { api } from 'boot/axios'
 
 export const useTGStore = defineStore('tg', () => {
 
     //prop
-    const collector = ref({id:1, nickname: 'Nemo', participate: false, orders: {}})
+    const collector = ref({id:1, nickname: 'Nemo', participate: false})
     const orders = ref([])
+
+    //getter
+    //const orders_ids  = computed(() => orders.value)
 
     async function setCollector(resp) {
 
@@ -18,8 +21,8 @@ export const useTGStore = defineStore('tg', () => {
 
         } else {
 
-          if (resp.orders && resp.orders.orders_ids) {
-              orders.value = resp.orders.orders_ids;
+          if (resp.orders) {
+              orders.value = resp.orders;
           }
         }
 
