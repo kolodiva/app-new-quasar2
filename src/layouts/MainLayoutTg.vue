@@ -19,7 +19,6 @@
                     unchecked-icon="clear"
                     left-label
                     @click='inActive'
-                    :disable='!initDataNotEmpty'
                   />
           </div>
 
