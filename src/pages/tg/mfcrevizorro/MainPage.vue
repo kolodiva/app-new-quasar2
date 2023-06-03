@@ -1,9 +1,9 @@
 <template>
-  <q-page class="bg-white text-blue q-pa-md">
+  <q-page class="">
 
       <div v-for="n in orders" :key='n.order_guid'>
           <q-expansion-item group="somegroup"
-          class="text-h5 shadow-1 overflow-hidden" :label="`${n.order_id}`" header-class="bg-primary text-white" expand-icon-class="text-white"
+          class="text-h5 shadow-1 overflow-hidden q-my-md" :label="`${n.order_id}`" header-class="bg-primary text-white" expand-icon-class="text-white"
           @show="startCounting(n.order_guid)" style="border-radius: 20px">
             <q-card class="">
               <q-card-section>
@@ -14,7 +14,6 @@
             </q-card>
           </q-expansion-item>
 
-          <br>
         </div>
 
 
