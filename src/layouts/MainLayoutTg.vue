@@ -29,8 +29,8 @@
       <q-page-container>
         <q-page padding style="" class="full-height">
 
-          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='showPopup'/>
-          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="mail" @click='testOrders'/>
+          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="info" @click='showPopup'/>
+          <q-btn size='sm' class='q-ma-sm' round color="secondary" icon="refresh" @click='testOrders'/>
 
 
           <router-view :key="$route.fullPath"/>
@@ -58,7 +58,7 @@
 
   const storeTG = useTGStore();
   const {collector} = storeToRefs(storeTG);
-  const {setCollector} = storeTG;
+  const {setCollector, reverseActive} = storeTG;
 
   const router = useRouter();
 
@@ -151,20 +151,25 @@
   }
   const inActive = async () => {
 
-    if (!initDataNotEmpty.value) {
-      $q.notify({
-        color: 'negative',
-        position: 'top',
-        message: `Go в Телеграмм... @Artamon!`,
-        icon: 'report_problem'
-      })
+    // if (!initDataNotEmpty.value) {
+    //   $q.notify({
+    //     color: 'negative',
+    //     position: 'top',
+    //     message: `Go в Телеграмм... @Artamon!`,
+    //     icon: 'report_problem'
+    //   })
+    //
+    //   return
+    // }
 
-      return
-    }
+    reverseActive();
 
-    //console.log(collector.value)
+    //console.log({...collector.value})
+    // return
 
-    const res = await postQueryTG({oper:'inActive', collector })
+    const res = await postQueryTG({oper:'inActive', collector: {...collector.value} })
+
+    //console.log(res.resp)
 
     if (res.resp) {
       setCollector(res.resp);
@@ -207,6 +212,12 @@
 
     if (res.resp) {
       setCollector(res.resp);
+      $q.notify({
+        color: 'positive',
+        position: 'top',
+        message: `O e detka`,
+        icon: 'report_problem'
+      })
     } else {
       $q.notify({
         color: 'negative',

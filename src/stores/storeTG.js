@@ -11,22 +11,14 @@ export const useTGStore = defineStore('tg', () => {
     //getter
     //const orders_ids  = computed(() => orders.value)
 
-    async function setCollector(resp) {
+    const reverseActive = () => {collector.value.participate = !collector.value.participate}
+
+    const setCollector = (resp) => {
 
         collector.value = resp;
 
-        if (!resp.participate) {
-
-          orders.value = [];
-
-        } else {
-
-          if (resp.orders) {
-              orders.value = resp.orders;
-          }
-        }
-
-      }
+        orders.value = resp.orders ? resp.orders : [];
+    }
     //
-    return {collector, orders, setCollector}
+    return {collector, orders, setCollector, reverseActive}
 });
